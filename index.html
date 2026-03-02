@@ -5,19 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LDXFLIX - Filmes e Series</title>
     
-    <!-- Google Fonts - Poppins -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     
-    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
     <script>
-        /* ========================================
-           CONFIGURACAO DO TAILWIND
-           Define cores customizadas e fontes
-        ======================================== */
         tailwind.config = {
             darkMode: 'class',
             theme: {
@@ -26,7 +20,6 @@
                         'poppins': ['Poppins', 'sans-serif'],
                     },
                     colors: {
-                        /* Paleta roxa personalizada */
                         'ldx': {
                             50: '#faf5ff',
                             100: '#f3e8ff',
@@ -47,10 +40,6 @@
     </script>
     
     <style>
-        /* ========================================
-           CSS CUSTOM VARIABLES - TEMAS
-           Variaveis para alternar entre Dark e Light
-        ======================================== */
         :root {
             --bg-primary: #0a0a0f;
             --bg-secondary: #12121a;
@@ -67,7 +56,6 @@
             --gradient-end: #6366f1;
         }
         
-        /* Tema Light */
         .light-theme {
             --bg-primary: #fafafa;
             --bg-secondary: #f4f4f5;
@@ -82,18 +70,8 @@
             --border: #e4e4e7;
         }
         
-        /* ========================================
-           ESTILOS BASE
-        ======================================== */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        html {
-            scroll-behavior: smooth;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
         
         body {
             font-family: 'Poppins', sans-serif;
@@ -103,28 +81,11 @@
             transition: background-color 0.3s ease, color 0.3s ease;
         }
         
-        /* Scrollbar customizada */
-        ::-webkit-scrollbar {
-            width: 8px;
-            height: 8px;
-        }
+        ::-webkit-scrollbar { width: 8px; height: 8px; }
+        ::-webkit-scrollbar-track { background: var(--bg-secondary); }
+        ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--accent-hover); }
         
-        ::-webkit-scrollbar-track {
-            background: var(--bg-secondary);
-        }
-        
-        ::-webkit-scrollbar-thumb {
-            background: var(--accent);
-            border-radius: 4px;
-        }
-        
-        ::-webkit-scrollbar-thumb:hover {
-            background: var(--accent-hover);
-        }
-        
-        /* ========================================
-           HEADER E NAVEGACAO
-        ======================================== */
         .header {
             position: fixed;
             top: 0;
@@ -162,17 +123,9 @@
             transform: translateX(-50%);
         }
         
-        .nav-link:hover {
-            color: var(--text-primary);
-        }
+        .nav-link:hover { color: var(--text-primary); }
+        .nav-link:hover::after { width: 80%; }
         
-        .nav-link:hover::after {
-            width: 80%;
-        }
-        
-        /* ========================================
-           HERO SECTION
-        ======================================== */
         .hero {
             position: relative;
             min-height: 100vh;
@@ -199,25 +152,15 @@
         .hero-gradient {
             position: absolute;
             inset: 0;
-            background: linear-gradient(
-                to bottom,
-                transparent 0%,
-                transparent 50%,
-                var(--bg-primary) 100%
-            );
+            background: linear-gradient(to bottom, transparent 0%, transparent 50%, var(--bg-primary) 100%);
         }
         
         .hero-gradient-left {
             position: absolute;
             inset: 0;
-            background: linear-gradient(
-                to right,
-                var(--bg-primary) 0%,
-                transparent 50%
-            );
+            background: linear-gradient(to right, var(--bg-primary) 0%, transparent 50%);
         }
         
-        /* Particulas flutuantes */
         .particles {
             position: absolute;
             inset: 0;
@@ -236,25 +179,12 @@
         }
         
         @keyframes float {
-            0%, 100% {
-                transform: translateY(0) translateX(0);
-                opacity: 0;
-            }
-            10% {
-                opacity: 0.6;
-            }
-            90% {
-                opacity: 0.6;
-            }
-            100% {
-                transform: translateY(-100vh) translateX(100px);
-                opacity: 0;
-            }
+            0%, 100% { transform: translateY(0) translateX(0); opacity: 0; }
+            10% { opacity: 0.6; }
+            90% { opacity: 0.6; }
+            100% { transform: translateY(-100vh) translateX(100px); opacity: 0; }
         }
         
-        /* ========================================
-           BOTOES
-        ======================================== */
         .btn-primary {
             background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
             color: white;
@@ -282,14 +212,8 @@
             box-shadow: 0 10px 40px var(--accent-glow);
         }
         
-        .btn-primary:hover::before {
-            opacity: 1;
-        }
-        
-        .btn-primary span {
-            position: relative;
-            z-index: 1;
-        }
+        .btn-primary:hover::before { opacity: 1; }
+        .btn-primary span { position: relative; z-index: 1; }
         
         .btn-secondary {
             background: var(--bg-card);
@@ -307,17 +231,8 @@
             border-color: var(--accent);
         }
         
-        /* ========================================
-           CARROSSEL DE FILMES/SERIES
-        ======================================== */
-        .carousel-section {
-            padding: 2rem 0;
-        }
-        
-        .carousel-container {
-            position: relative;
-            overflow: hidden;
-        }
+        .carousel-section { padding: 2rem 0; }
+        .carousel-container { position: relative; overflow: hidden; }
         
         .carousel-track {
             display: flex;
@@ -328,9 +243,7 @@
             scrollbar-width: none;
         }
         
-        .carousel-track::-webkit-scrollbar {
-            display: none;
-        }
+        .carousel-track::-webkit-scrollbar { display: none; }
         
         .card-movie {
             flex-shrink: 0;
@@ -340,16 +253,8 @@
             position: relative;
         }
         
-        @media (min-width: 768px) {
-            .card-movie {
-                width: 240px;
-            }
-        }
-        
-        .card-movie:hover {
-            transform: scale(1.08);
-            z-index: 10;
-        }
+        @media (min-width: 768px) { .card-movie { width: 240px; } }
+        .card-movie:hover { transform: scale(1.08); z-index: 10; }
         
         .card-movie-poster {
             position: relative;
@@ -366,18 +271,12 @@
             transition: transform 0.4s ease;
         }
         
-        .card-movie:hover .card-movie-poster img {
-            transform: scale(1.1);
-        }
+        .card-movie:hover .card-movie-poster img { transform: scale(1.1); }
         
         .card-movie-overlay {
             position: absolute;
             inset: 0;
-            background: linear-gradient(
-                to top,
-                rgba(0, 0, 0, 0.9) 0%,
-                transparent 50%
-            );
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, transparent 50%);
             opacity: 0;
             transition: opacity 0.3s ease;
             display: flex;
@@ -386,13 +285,8 @@
             padding: 1rem;
         }
         
-        .card-movie:hover .card-movie-overlay {
-            opacity: 1;
-        }
-        
-        .card-movie-info {
-            padding: 0.75rem 0;
-        }
+        .card-movie:hover .card-movie-overlay { opacity: 1; }
+        .card-movie-info { padding: 0.75rem 0; }
         
         .card-movie-title {
             font-weight: 600;
@@ -408,7 +302,6 @@
             color: var(--text-muted);
         }
         
-        /* Botoes do carrossel */
         .carousel-btn {
             position: absolute;
             top: 50%;
@@ -427,22 +320,10 @@
             color: var(--text-primary);
         }
         
-        .carousel-btn:hover {
-            background: var(--accent);
-            border-color: var(--accent);
-        }
+        .carousel-btn:hover { background: var(--accent); border-color: var(--accent); }
+        .carousel-btn.prev { left: 1rem; }
+        .carousel-btn.next { right: 1rem; }
         
-        .carousel-btn.prev {
-            left: 1rem;
-        }
-        
-        .carousel-btn.next {
-            right: 1rem;
-        }
-        
-        /* ========================================
-           MODAL DE LOGIN/CADASTRO
-        ======================================== */
         .modal-overlay {
             position: fixed;
             inset: 0;
@@ -457,10 +338,7 @@
             transition: all 0.3s ease;
         }
         
-        .modal-overlay.active {
-            opacity: 1;
-            visibility: visible;
-        }
+        .modal-overlay.active { opacity: 1; visibility: visible; }
         
         .modal-content {
             background: var(--bg-card);
@@ -473,9 +351,7 @@
             transition: all 0.3s ease;
         }
         
-        .modal-overlay.active .modal-content {
-            transform: scale(1) translateY(0);
-        }
+        .modal-overlay.active .modal-content { transform: scale(1) translateY(0); }
         
         .input-field {
             width: 100%;
@@ -494,13 +370,8 @@
             box-shadow: 0 0 0 3px var(--accent-glow);
         }
         
-        .input-field::placeholder {
-            color: var(--text-muted);
-        }
+        .input-field::placeholder { color: var(--text-muted); }
         
-        /* ========================================
-           PLAYER DE VIDEO
-        ======================================== */
         .player-overlay {
             position: fixed;
             inset: 0;
@@ -513,10 +384,7 @@
             transition: all 0.3s ease;
         }
         
-        .player-overlay.active {
-            opacity: 1;
-            visibility: visible;
-        }
+        .player-overlay.active { opacity: 1; visibility: visible; }
         
         .player-header {
             padding: 1rem 2rem;
@@ -534,6 +402,7 @@
             align-items: center;
             justify-content: center;
             padding: 1rem;
+            position: relative;
         }
         
         .player-frame {
@@ -543,9 +412,10 @@
             border-radius: 12px;
             background: #000;
             border: 1px solid var(--border);
+            position: relative;
+            z-index: 1;
         }
         
-        /* Loading do player */
         .player-loading {
             position: absolute;
             inset: 0;
@@ -555,15 +425,22 @@
             justify-content: center;
             gap: 1rem;
             background: var(--bg-primary);
+            z-index: 0;
         }
         
-        .player-loading.hidden {
-            display: none;
+        .player-loading.hidden { display: none; }
+        
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 3px solid var(--border);
+            border-top-color: var(--accent);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
         }
         
-        /* ========================================
-           TOGGLE DE TEMA
-        ======================================== */
+        @keyframes spin { to { transform: rotate(360deg); } }
+        
         .theme-toggle {
             width: 56px;
             height: 28px;
@@ -587,16 +464,9 @@
             transition: all 0.3s ease;
         }
         
-        .light-theme .theme-toggle::after {
-            left: 31px;
-        }
+        .light-theme .theme-toggle::after { left: 31px; }
         
-        /* ========================================
-           SECOES DE CONTEUDO
-        ======================================== */
-        .section {
-            padding: 4rem 0;
-        }
+        .section { padding: 4rem 0; }
         
         .section-title {
             font-size: 1.75rem;
@@ -617,53 +487,31 @@
             border-radius: 2px;
         }
         
-        /* ========================================
-           FOOTER
-        ======================================== */
         .footer {
             background: var(--bg-secondary);
             border-top: 1px solid var(--border);
             padding: 3rem 0 1.5rem;
         }
         
-        /* ========================================
-           ANIMACOES DE ENTRADA
-        ======================================== */
         .reveal {
             opacity: 0;
             transform: translateY(30px);
             transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
         }
         
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
+        .reveal.active { opacity: 1; transform: translateY(0); }
         
-        /* Animacao stagger para cards */
         .stagger-item {
             opacity: 0;
             transform: translateY(20px);
         }
         
-        .stagger-item.active {
-            animation: fadeInUp 0.5s ease forwards;
-        }
+        .stagger-item.active { animation: fadeInUp 0.5s ease forwards; }
         
-        @keyframes fadeInUp {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
+        @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
         
-        /* ========================================
-           RESPONSIVIDADE
-        ======================================== */
         @media (max-width: 768px) {
-            .header {
-                padding: 1rem;
-            }
+            .header { padding: 1rem; }
             
             .nav-menu {
                 position: fixed;
@@ -680,35 +528,14 @@
                 transition: transform 0.3s ease;
             }
             
-            .nav-menu.active {
-                transform: translateX(0);
-            }
-            
-            .hero-title {
-                font-size: 2.5rem !important;
-            }
-            
-            .section-title {
-                font-size: 1.5rem;
-            }
-            
-            .card-movie {
-                width: 150px;
-            }
-            
-            .player-header {
-                padding: 0.75rem 1rem;
-            }
-            
-            .series-controls {
-                width: 100%;
-                justify-content: center;
-            }
+            .nav-menu.active { transform: translateX(0); }
+            .hero-title { font-size: 2.5rem !important; }
+            .section-title { font-size: 1.5rem; }
+            .card-movie { width: 150px; }
+            .player-header { padding: 0.75rem 1rem; }
+            .series-controls { width: 100%; justify-content: center; }
         }
         
-        /* ========================================
-           MENU MOBILE - HAMBURGER
-        ======================================== */
         .hamburger {
             display: none;
             flex-direction: column;
@@ -717,11 +544,7 @@
             z-index: 1001;
         }
         
-        @media (max-width: 768px) {
-            .hamburger {
-                display: flex;
-            }
-        }
+        @media (max-width: 768px) { .hamburger { display: flex; } }
         
         .hamburger span {
             width: 24px;
@@ -730,82 +553,27 @@
             transition: all 0.3s ease;
         }
         
-        .hamburger.active span:nth-child(1) {
-            transform: rotate(45deg) translate(5px, 5px);
-        }
+        .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+        .hamburger.active span:nth-child(2) { opacity: 0; }
+        .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
         
-        .hamburger.active span:nth-child(2) {
-            opacity: 0;
-        }
-        
-        .hamburger.active span:nth-child(3) {
-            transform: rotate(-45deg) translate(5px, -5px);
-        }
-        
-        /* ========================================
-           LOADING SPINNER
-        ======================================== */
-        .spinner {
-            width: 40px;
-            height: 40px;
-            border: 3px solid var(--border);
-            border-top-color: var(--accent);
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-        }
-        
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
-        
-        /* ========================================
-           PREFERENCIA REDUCED MOTION
-        ======================================== */
         @media (prefers-reduced-motion: reduce) {
-            *,
-            *::before,
-            *::after {
+            *, *::before, *::after {
                 animation-duration: 0.01ms !important;
                 animation-iteration-count: 1 !important;
                 transition-duration: 0.01ms !important;
             }
-            
-            html {
-                scroll-behavior: auto;
-            }
+            html { scroll-behavior: auto; }
         }
         
-        /* Animacoes de notificacao */
-        @keyframes slideIn {
-            from {
-                transform: translateX(100%);
-                opacity: 0;
-            }
-            to {
-                transform: translateX(0);
-                opacity: 1;
-            }
-        }
-        @keyframes slideOut {
-            from {
-                transform: translateX(0);
-                opacity: 1;
-            }
-            to {
-                transform: translateX(100%);
-                opacity: 0;
-            }
-        }
+        @keyframes slideIn { from { transform: translateX(100%); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+        @keyframes slideOut { from { transform: translateX(0); opacity: 1; } to { transform: translateX(100%); opacity: 0; } }
     </style>
 </head>
 <body class="font-poppins">
-    <!-- ========================================
-         HEADER / NAVEGACAO PRINCIPAL
-         Contem logo, menu de navegacao e acoes
-    ======================================== -->
+    <!-- HEADER -->
     <header class="header" id="header">
         <div class="max-w-7xl mx-auto flex items-center justify-between">
-            <!-- Logo LDXFLIX -->
             <a href="#home" class="flex items-center gap-2">
                 <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <rect width="40" height="40" rx="8" fill="url(#logo-gradient)"/>
@@ -817,12 +585,9 @@
                         </linearGradient>
                     </defs>
                 </svg>
-                <span class="text-2xl font-bold bg-gradient-to-r from-ldx-600 to-indigo-500 bg-clip-text text-transparent">
-                    LDXFLIX
-                </span>
+                <span class="text-2xl font-bold bg-gradient-to-r from-ldx-600 to-indigo-500 bg-clip-text text-transparent">LDXFLIX</span>
             </a>
             
-            <!-- Menu de Navegacao Desktop -->
             <nav class="nav-menu hidden md:flex items-center gap-2" id="navMenu">
                 <a href="#home" class="nav-link">Home</a>
                 <a href="#filmes" class="nav-link">Filmes</a>
@@ -830,31 +595,21 @@
                 <a href="#contato" class="nav-link">Contato</a>
             </nav>
             
-            <!-- Acoes do Header -->
             <div class="flex items-center gap-4">
-                <!-- Toggle de Tema -->
-                <button class="theme-toggle" id="themeToggle" aria-label="Alternar tema">
-                </button>
+                <button class="theme-toggle" id="themeToggle" aria-label="Alternar tema"></button>
                 
-                <!-- Botoes de Login (visivel quando deslogado) -->
                 <div class="auth-buttons flex items-center gap-3">
-                    <button onclick="openLoginModal()" class="btn-secondary text-sm py-2 px-4">
-                        Entrar
-                    </button>
+                    <button onclick="openLoginModal()" class="btn-secondary text-sm py-2 px-4">Entrar</button>
                 </div>
                 
-                <!-- Perfil do Usuario (visivel quando logado) -->
                 <div class="user-profile hidden items-center gap-3">
                     <div class="w-10 h-10 rounded-full bg-gradient-to-br from-ldx-600 to-indigo-500 flex items-center justify-center text-white font-semibold">
                         <span id="userInitial">U</span>
                     </div>
                     <span id="userName" class="hidden md:block text-sm font-medium"></span>
-                    <button onclick="logout()" class="text-sm text-ldx-500 hover:text-ldx-400 transition-colors">
-                        Sair
-                    </button>
+                    <button onclick="logout()" class="text-sm text-ldx-500 hover:text-ldx-400 transition-colors">Sair</button>
                 </div>
                 
-                <!-- Hamburger Menu Mobile -->
                 <div class="hamburger md:hidden" id="hamburger" onclick="toggleMobileMenu()">
                     <span></span>
                     <span></span>
@@ -864,32 +619,19 @@
         </div>
     </header>
 
-    <!-- ========================================
-         HERO SECTION
-         Banner principal com filme em destaque
-    ======================================== -->
+    <!-- HERO -->
     <section id="home" class="hero">
-        <!-- Background do Hero -->
         <div class="hero-bg" id="heroBg"></div>
         <div class="hero-gradient"></div>
         <div class="hero-gradient-left"></div>
-        
-        <!-- Particulas animadas -->
         <div class="particles" id="particles"></div>
         
-        <!-- Conteudo do Hero -->
         <div class="relative z-10 max-w-7xl mx-auto px-4 md:px-8">
             <div class="max-w-2xl reveal" id="heroContent">
-                <span class="inline-block px-3 py-1 bg-ldx-600/20 text-ldx-400 rounded-full text-sm font-medium mb-4">
-                    Em Destaque
-                </span>
-                <h1 class="hero-title text-4xl md:text-6xl font-bold mb-4 leading-tight" id="heroTitle">
-                    Carregando...
-                </h1>
-                <p class="text-lg md:text-xl text-[var(--text-secondary)] mb-6 line-clamp-3" id="heroDescription">
-                </p>
+                <span class="inline-block px-3 py-1 bg-ldx-600/20 text-ldx-400 rounded-full text-sm font-medium mb-4">Em Destaque</span>
+                <h1 class="hero-title text-4xl md:text-6xl font-bold mb-4 leading-tight" id="heroTitle">Carregando...</h1>
+                <p class="text-lg md:text-xl text-[var(--text-secondary)] mb-6 line-clamp-3" id="heroDescription"></p>
                 
-                <!-- Meta info do filme -->
                 <div class="flex flex-wrap items-center gap-4 mb-8 text-sm">
                     <span class="flex items-center gap-1 text-yellow-500">
                         <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
@@ -898,12 +640,9 @@
                         <span id="heroRating">0</span>
                     </span>
                     <span class="text-[var(--text-muted)]" id="heroYear">2024</span>
-                    <span class="px-2 py-0.5 border border-[var(--border)] rounded text-xs" id="heroQuality">
-                        HD
-                    </span>
+                    <span class="px-2 py-0.5 border border-[var(--border)] rounded text-xs" id="heroQuality">HD</span>
                 </div>
                 
-                <!-- Botoes de acao -->
                 <div class="flex flex-wrap gap-4">
                     <button onclick="playFeatured()" class="btn-primary flex items-center gap-2">
                         <span class="flex items-center gap-2">
@@ -924,715 +663,256 @@
         </div>
     </section>
 
-    <!-- ========================================
-         SECAO DE FILMES
-         Carrossel horizontal de filmes
-    ======================================== -->
+    <!-- FILMES -->
     <section id="filmes" class="section bg-[var(--bg-primary)]">
         <div class="max-w-7xl mx-auto">
             <div class="px-4 md:px-8">
                 <h2 class="section-title reveal">Filmes Populares</h2>
             </div>
-            
             <div class="carousel-container relative">
-                <!-- Botoes de navegacao -->
                 <button class="carousel-btn prev" onclick="scrollCarousel('movies-carousel', -1)" aria-label="Anterior">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
-                    </svg>
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
                 </button>
-                
-                <!-- Track do carrossel -->
-                <div class="carousel-track" id="movies-carousel">
-                    <!-- Cards serao inseridos via JavaScript -->
-                </div>
-                
+                <div class="carousel-track" id="movies-carousel"></div>
                 <button class="carousel-btn next" onclick="scrollCarousel('movies-carousel', 1)" aria-label="Proximo">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
-                    </svg>
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
                 </button>
             </div>
         </div>
     </section>
 
-    <!-- ========================================
-         SECAO DE SERIES
-         Carrossel horizontal de series
-    ======================================== -->
+    <!-- SERIES -->
     <section id="series" class="section bg-[var(--bg-secondary)]">
         <div class="max-w-7xl mx-auto">
             <div class="px-4 md:px-8">
                 <h2 class="section-title reveal">Series em Alta</h2>
             </div>
-            
             <div class="carousel-container relative">
                 <button class="carousel-btn prev" onclick="scrollCarousel('series-carousel', -1)" aria-label="Anterior">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
-                    </svg>
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
                 </button>
-                
-                <div class="carousel-track" id="series-carousel">
-                    <!-- Cards serao inseridos via JavaScript -->
-                </div>
-                
+                <div class="carousel-track" id="series-carousel"></div>
                 <button class="carousel-btn next" onclick="scrollCarousel('series-carousel', 1)" aria-label="Proximo">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
-                    </svg>
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
                 </button>
             </div>
         </div>
     </section>
 
-    <!-- ========================================
-         SECAO LANCAMENTOS
-         Carrossel de lancamentos recentes
-    ======================================== -->
+    <!-- LANCAMENTOS -->
     <section class="section bg-[var(--bg-primary)]">
         <div class="max-w-7xl mx-auto">
             <div class="px-4 md:px-8">
                 <h2 class="section-title reveal">Lancamentos</h2>
             </div>
-            
             <div class="carousel-container relative">
                 <button class="carousel-btn prev" onclick="scrollCarousel('releases-carousel', -1)" aria-label="Anterior">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
-                    </svg>
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
                 </button>
-                
-                <div class="carousel-track" id="releases-carousel">
-                    <!-- Cards serao inseridos via JavaScript -->
-                </div>
-                
+                <div class="carousel-track" id="releases-carousel"></div>
                 <button class="carousel-btn next" onclick="scrollCarousel('releases-carousel', 1)" aria-label="Proximo">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
-                    </svg>
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
                 </button>
             </div>
         </div>
     </section>
 
-    <!-- ========================================
-         SECAO DE CONTATO
-         Formulario de contato
-    ======================================== -->
+    <!-- CONTATO -->
     <section id="contato" class="section bg-[var(--bg-secondary)]">
         <div class="max-w-7xl mx-auto px-4 md:px-8">
             <h2 class="section-title reveal">Entre em Contato</h2>
-            
             <div class="grid md:grid-cols-2 gap-12 mt-12">
-                <!-- Informacoes de Contato -->
                 <div class="reveal">
                     <h3 class="text-2xl font-bold mb-4">Fale Conosco</h3>
-                    <p class="text-[var(--text-secondary)] mb-8">
-                        Tem alguma duvida, sugestao ou feedback? Estamos aqui para ajudar. 
-                        Preencha o formulario ao lado ou entre em contato pelos canais abaixo.
-                    </p>
-                    
+                    <p class="text-[var(--text-secondary)] mb-8">Tem alguma duvida, sugestao ou feedback? Estamos aqui para ajudar.</p>
                     <div class="space-y-4">
                         <div class="flex items-center gap-4">
                             <div class="w-12 h-12 rounded-full bg-ldx-600/20 flex items-center justify-center">
-                                <svg class="w-5 h-5 text-ldx-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
-                                </svg>
+                                <svg class="w-5 h-5 text-ldx-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
                             </div>
-                            <div>
-                                <p class="text-sm text-[var(--text-muted)]">Email</p>
-                                <p class="font-medium">contato@ldxflix.com</p>
-                            </div>
+                            <div><p class="text-sm text-[var(--text-muted)]">Email</p><p class="font-medium">contato@ldxflix.com</p></div>
                         </div>
-                        
                         <div class="flex items-center gap-4">
                             <div class="w-12 h-12 rounded-full bg-ldx-600/20 flex items-center justify-center">
-                                <svg class="w-5 h-5 text-ldx-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
-                                </svg>
+                                <svg class="w-5 h-5 text-ldx-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
                             </div>
-                            <div>
-                                <p class="text-sm text-[var(--text-muted)]">Localizacao</p>
-                                <p class="font-medium">Sao Paulo, Brasil</p>
-                            </div>
+                            <div><p class="text-sm text-[var(--text-muted)]">Localizacao</p><p class="font-medium">Sao Paulo, Brasil</p></div>
                         </div>
                     </div>
                 </div>
-                
-                <!-- Formulario -->
                 <form class="reveal space-y-4" onsubmit="handleContact(event)">
-                    <div>
-                        <label class="block text-sm font-medium mb-2">Nome</label>
-                        <input type="text" class="input-field" placeholder="Seu nome" required>
-                    </div>
-                    <div>
-                        <label class="block text-sm font-medium mb-2">Email</label>
-                        <input type="email" class="input-field" placeholder="seu@email.com" required>
-                    </div>
-                    <div>
-                        <label class="block text-sm font-medium mb-2">Mensagem</label>
-                        <textarea class="input-field min-h-[120px] resize-none" placeholder="Sua mensagem..." required></textarea>
-                    </div>
-                    <button type="submit" class="btn-primary w-full">
-                        <span>Enviar Mensagem</span>
-                    </button>
+                    <div><label class="block text-sm font-medium mb-2">Nome</label><input type="text" class="input-field" placeholder="Seu nome" required></div>
+                    <div><label class="block text-sm font-medium mb-2">Email</label><input type="email" class="input-field" placeholder="seu@email.com" required></div>
+                    <div><label class="block text-sm font-medium mb-2">Mensagem</label><textarea class="input-field min-h-[120px] resize-none" placeholder="Sua mensagem..." required></textarea></div>
+                    <button type="submit" class="btn-primary w-full"><span>Enviar Mensagem</span></button>
                 </form>
             </div>
         </div>
     </section>
 
-    <!-- ========================================
-         FOOTER
-         Rodape com informacoes e links
-    ======================================== -->
+    <!-- FOOTER -->
     <footer class="footer">
         <div class="max-w-7xl mx-auto px-4 md:px-8">
             <div class="grid grid-cols-2 md:grid-cols-4 gap-8 mb-8">
-                <!-- Coluna 1 - Sobre -->
-                <div>
-                    <h4 class="font-bold mb-4">LDXFLIX</h4>
-                    <p class="text-sm text-[var(--text-secondary)]">
-                        Sua plataforma favorita para assistir filmes e series em alta qualidade.
-                    </p>
-                </div>
-                
-                <!-- Coluna 2 - Navegacao -->
-                <div>
-                    <h4 class="font-bold mb-4">Navegacao</h4>
-                    <ul class="space-y-2 text-sm text-[var(--text-secondary)]">
-                        <li><a href="#home" class="hover:text-[var(--text-primary)] transition-colors">Home</a></li>
-                        <li><a href="#filmes" class="hover:text-[var(--text-primary)] transition-colors">Filmes</a></li>
-                        <li><a href="#series" class="hover:text-[var(--text-primary)] transition-colors">Series</a></li>
-                        <li><a href="#contato" class="hover:text-[var(--text-primary)] transition-colors">Contato</a></li>
-                    </ul>
-                </div>
-                
-                <!-- Coluna 3 - Categorias -->
-                <div>
-                    <h4 class="font-bold mb-4">Categorias</h4>
-                    <ul class="space-y-2 text-sm text-[var(--text-secondary)]">
-                        <li><a href="#" class="hover:text-[var(--text-primary)] transition-colors">Acao</a></li>
-                        <li><a href="#" class="hover:text-[var(--text-primary)] transition-colors">Comedia</a></li>
-                        <li><a href="#" class="hover:text-[var(--text-primary)] transition-colors">Drama</a></li>
-                        <li><a href="#" class="hover:text-[var(--text-primary)] transition-colors">Terror</a></li>
-                    </ul>
-                </div>
-                
-                <!-- Coluna 4 - Redes Sociais -->
-                <div>
-                    <h4 class="font-bold mb-4">Redes Sociais</h4>
-                    <div class="flex gap-4">
-                        <a href="#" class="w-10 h-10 rounded-full bg-[var(--bg-card)] border border-[var(--border)] flex items-center justify-center hover:bg-ldx-600 hover:border-ldx-600 transition-all" aria-label="Facebook">
-                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/>
-                            </svg>
-                        </a>
-                        <a href="#" class="w-10 h-10 rounded-full bg-[var(--bg-card)] border border-[var(--border)] flex items-center justify-center hover:bg-ldx-600 hover:border-ldx-600 transition-all" aria-label="Twitter">
-                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"/>
-                            </svg>
-                        </a>
-                        <a href="#" class="w-10 h-10 rounded-full bg-[var(--bg-card)] border border-[var(--border)] flex items-center justify-center hover:bg-ldx-600 hover:border-ldx-600 transition-all" aria-label="Instagram">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <rect x="2" y="2" width="20" height="20" rx="5" ry="5" stroke-width="2"/>
-                                <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z" stroke-width="2"/>
-                                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" stroke-width="2"/>
-                            </svg>
-                        </a>
-                    </div>
-                </div>
+                <div><h4 class="font-bold mb-4">LDXFLIX</h4><p class="text-sm text-[var(--text-secondary)]">Sua plataforma favorita para assistir filmes e series em alta qualidade.</p></div>
+                <div><h4 class="font-bold mb-4">Navegacao</h4><ul class="space-y-2 text-sm text-[var(--text-secondary)]"><li><a href="#home" class="hover:text-[var(--text-primary)] transition-colors">Home</a></li><li><a href="#filmes" class="hover:text-[var(--text-primary)] transition-colors">Filmes</a></li><li><a href="#series" class="hover:text-[var(--text-primary)] transition-colors">Series</a></li><li><a href="#contato" class="hover:text-[var(--text-primary)] transition-colors">Contato</a></li></ul></div>
+                <div><h4 class="font-bold mb-4">Categorias</h4><ul class="space-y-2 text-sm text-[var(--text-secondary)]"><li><a href="#" class="hover:text-[var(--text-primary)] transition-colors">Acao</a></li><li><a href="#" class="hover:text-[var(--text-primary)] transition-colors">Comedia</a></li><li><a href="#" class="hover:text-[var(--text-primary)] transition-colors">Drama</a></li><li><a href="#" class="hover:text-[var(--text-primary)] transition-colors">Terror</a></li></ul></div>
+                <div><h4 class="font-bold mb-4">Redes Sociais</h4><div class="flex gap-4"><a href="#" class="w-10 h-10 rounded-full bg-[var(--bg-card)] border border-[var(--border)] flex items-center justify-center hover:bg-ldx-600 hover:border-ldx-600 transition-all" aria-label="Facebook"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a><a href="#" class="w-10 h-10 rounded-full bg-[var(--bg-card)] border border-[var(--border)] flex items-center justify-center hover:bg-ldx-600 hover:border-ldx-600 transition-all" aria-label="Twitter"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"/></svg></a><a href="#" class="w-10 h-10 rounded-full bg-[var(--bg-card)] border border-[var(--border)] flex items-center justify-center hover:bg-ldx-600 hover:border-ldx-600 transition-all" aria-label="Instagram"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5" stroke-width="2"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z" stroke-width="2"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5" stroke-width="2"/></svg></a></div></div>
             </div>
-            
-            <!-- Copyright -->
-            <div class="pt-8 border-t border-[var(--border)] text-center text-sm text-[var(--text-muted)]">
-                <p>2024 LDXFLIX. Todos os direitos reservados.</p>
-            </div>
+            <div class="pt-8 border-t border-[var(--border)] text-center text-sm text-[var(--text-muted)]"><p>2024 LDXFLIX. Todos os direitos reservados.</p></div>
         </div>
     </footer>
 
-    <!-- ========================================
-         MODAL DE LOGIN
-         Formulario de autenticacao
-    ======================================== -->
+    <!-- LOGIN MODAL -->
     <div class="modal-overlay" id="loginModal">
         <div class="modal-content">
-            <!-- Header do Modal -->
             <div class="flex items-center justify-between mb-6">
                 <h2 class="text-2xl font-bold" id="modalTitle">Entrar</h2>
-                <button onclick="closeLoginModal()" class="w-10 h-10 rounded-full bg-[var(--bg-secondary)] flex items-center justify-center hover:bg-[var(--bg-hover)] transition-colors" aria-label="Fechar">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
-                    </svg>
-                </button>
+                <button onclick="closeLoginModal()" class="w-10 h-10 rounded-full bg-[var(--bg-secondary)] flex items-center justify-center hover:bg-[var(--bg-hover)] transition-colors" aria-label="Fechar"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg></button>
             </div>
-            
-            <!-- Formulario de Login -->
             <form id="loginForm" class="space-y-4" onsubmit="handleLogin(event)">
-                <div>
-                    <label class="block text-sm font-medium mb-2">Email</label>
-                    <input type="email" id="loginEmail" class="input-field" placeholder="seu@email.com" required>
-                </div>
-                <div>
-                    <label class="block text-sm font-medium mb-2">Senha</label>
-                    <input type="password" id="loginPassword" class="input-field" placeholder="Sua senha" required>
-                </div>
-                <button type="submit" class="btn-primary w-full">
-                    <span>Entrar</span>
-                </button>
+                <div><label class="block text-sm font-medium mb-2">Email</label><input type="email" id="loginEmail" class="input-field" placeholder="seu@email.com" required></div>
+                <div><label class="block text-sm font-medium mb-2">Senha</label><input type="password" id="loginPassword" class="input-field" placeholder="Sua senha" required></div>
+                <button type="submit" class="btn-primary w-full"><span>Entrar</span></button>
             </form>
-            
-            <!-- Formulario de Cadastro (oculto por padrao) -->
             <form id="registerForm" class="space-y-4 hidden" onsubmit="handleRegister(event)">
-                <div>
-                    <label class="block text-sm font-medium mb-2">Nome</label>
-                    <input type="text" id="registerName" class="input-field" placeholder="Seu nome" required>
-                </div>
-                <div>
-                    <label class="block text-sm font-medium mb-2">Email</label>
-                    <input type="email" id="registerEmail" class="input-field" placeholder="seu@email.com" required>
-                </div>
-                <div>
-                    <label class="block text-sm font-medium mb-2">Senha</label>
-                    <input type="password" id="registerPassword" class="input-field" placeholder="Crie uma senha" required>
-                </div>
-                <button type="submit" class="btn-primary w-full">
-                    <span>Criar Conta</span>
-                </button>
+                <div><label class="block text-sm font-medium mb-2">Nome</label><input type="text" id="registerName" class="input-field" placeholder="Seu nome" required></div>
+                <div><label class="block text-sm font-medium mb-2">Email</label><input type="email" id="registerEmail" class="input-field" placeholder="seu@email.com" required></div>
+                <div><label class="block text-sm font-medium mb-2">Senha</label><input type="password" id="registerPassword" class="input-field" placeholder="Crie uma senha" required></div>
+                <button type="submit" class="btn-primary w-full"><span>Criar Conta</span></button>
             </form>
-            
-            <!-- Divisor -->
-            <div class="flex items-center gap-4 my-6">
-                <div class="flex-1 h-px bg-[var(--border)]"></div>
-                <span class="text-sm text-[var(--text-muted)]">ou</span>
-                <div class="flex-1 h-px bg-[var(--border)]"></div>
-            </div>
-            
-            <!-- Botao de Convidado -->
-            <button onclick="loginAsGuest()" class="btn-secondary w-full flex items-center justify-center gap-2">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
-                </svg>
-                Entrar como Convidado
-            </button>
-            
-            <!-- Toggle Login/Cadastro -->
-            <p class="text-center text-sm text-[var(--text-secondary)] mt-6">
-                <span id="toggleText">Nao tem uma conta?</span>
-                <button onclick="toggleAuthForm()" class="text-ldx-500 hover:text-ldx-400 font-medium ml-1" id="toggleBtn">
-                    Cadastre-se
-                </button>
-            </p>
+            <div class="flex items-center gap-4 my-6"><div class="flex-1 h-px bg-[var(--border)]"></div><span class="text-sm text-[var(--text-muted)]">ou</span><div class="flex-1 h-px bg-[var(--border)]"></div></div>
+            <button onclick="loginAsGuest()" class="btn-secondary w-full flex items-center justify-center gap-2"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>Entrar como Convidado</button>
+            <p class="text-center text-sm text-[var(--text-secondary)] mt-6"><span id="toggleText">Nao tem uma conta?</span><button onclick="toggleAuthForm()" class="text-ldx-500 hover:text-ldx-400 font-medium ml-1" id="toggleBtn">Cadastre-se</button></p>
         </div>
     </div>
 
-    <!-- ========================================
-         MODAL DO PLAYER DE VIDEO
-         Player sobreposto para assistir
-    ======================================== -->
+    <!-- PLAYER -->
     <div class="player-overlay" id="playerOverlay">
-        <!-- Header do Player -->
         <div class="player-header">
             <div class="flex items-center gap-4">
-                <button onclick="closePlayer()" class="w-10 h-10 rounded-full bg-[var(--bg-card)] border border-[var(--border)] flex items-center justify-center hover:bg-ldx-600 hover:border-ldx-600 transition-all" aria-label="Fechar player">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
-                    </svg>
-                </button>
-                <div>
-                    <h3 class="font-bold" id="playerTitle">Titulo</h3>
-                    <p class="text-sm text-[var(--text-muted)]" id="playerSubtitle"></p>
-                </div>
+                <button onclick="closePlayer()" class="w-10 h-10 rounded-full bg-[var(--bg-card)] border border-[var(--border)] flex items-center justify-center hover:bg-ldx-600 hover:border-ldx-600 transition-all" aria-label="Fechar player"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg></button>
+                <div><h3 class="font-bold" id="playerTitle">Titulo</h3><p class="text-sm text-[var(--text-muted)]" id="playerSubtitle"></p></div>
             </div>
-            
-            <!-- Seletor de Temporada/Episodio (visivel para series) -->
             <div class="series-controls hidden md:flex items-center gap-4" id="seriesControls">
-                <select id="seasonSelect" class="input-field py-2 px-3 w-auto" onchange="changeSeason()">
-                    <!-- Opcoes serao inseridas via JS -->
-                </select>
-                <select id="episodeSelect" class="input-field py-2 px-3 w-auto" onchange="changeEpisode()">
-                    <!-- Opcoes serao inseridas via JS -->
-                </select>
+                <select id="seasonSelect" class="input-field py-2 px-3 w-auto" onchange="changeSeason()"></select>
+                <select id="episodeSelect" class="input-field py-2 px-3 w-auto" onchange="changeEpisode()"></select>
             </div>
         </div>
-        
-        <!-- Container do Player -->
-        <div class="player-container" style="position: relative;">
-            <!-- Loading -->
-            <div class="player-loading" id="playerLoading">
-                <div class="spinner"></div>
-                <p class="text-[var(--text-secondary)]">Carregando player...</p>
-            </div>
-            
-            <iframe id="videoFrame" class="player-frame" allowfullscreen style="position: relative; z-index: 1;"></iframe>
+        <div class="player-container">
+            <div class="player-loading" id="playerLoading"><div class="spinner"></div><p class="text-[var(--text-secondary)]">Carregando player...</p></div>
+            <iframe id="videoFrame" class="player-frame" allowfullscreen></iframe>
         </div>
     </div>
 
-    <!-- ========================================
-         JAVASCRIPT
-         Toda a logica do site
-    ======================================== -->
     <script>
         /* ========================================
            DADOS DE FILMES E SERIES
-           Array com informacoes mockadas
-           Os IDs sao do TMDB (The Movie Database)
         ======================================== */
-        
-        // Filmes populares com IDs do TMDB
         const movies = [
-            {
-                id: 572802,
-                title: "Aquaman e o Reino Perdido",
-                year: 2023,
-                rating: 6.9,
-                poster: "https://image.tmdb.org/t/p/w500/7lTnXOy0iNtBAdRP3TZvaKJ77F6.jpg",
-                backdrop: "https://image.tmdb.org/t/p/original/jXJxMcVoEuXzym3vFnjqDW4ifo6.jpg",
-                type: "movie",
-                quality: "HD"
-            },
-            {
-                id: 866398,
-                title: "Besouro Azul",
-                year: 2023,
-                rating: 7.1,
-                poster: "https://image.tmdb.org/t/p/w500/mXLOHHc1Zeuwsl4xYKjKh2280oL.jpg",
-                backdrop: "https://image.tmdb.org/t/p/original/rLb2cwF3Pazuxaj0sRXQ037tGI1.jpg",
-                type: "movie",
-                quality: "HD"
-            },
-            {
-                id: 569094,
-                title: "Spider-Man: Atraves do Aranhaverso",
-                year: 2023,
-                rating: 8.7,
-                poster: "https://image.tmdb.org/t/p/w500/qNBAXBIQlnOThrVvA6mA2B5ber.jpg",
-                backdrop: "https://image.tmdb.org/t/p/original/4HodYYKEIsGOdinkGi2Ucz6X9i0.jpg",
-                type: "movie",
-                quality: "4K"
-            },
-            {
-                id: 940551,
-                title: "Migration",
-                year: 2023,
-                rating: 7.5,
-                poster: "https://image.tmdb.org/t/p/w500/ldfCF9RhR40mppkzmftxapaHTo.jpg",
-                backdrop: "https://image.tmdb.org/t/p/original/tLL1emByuro2PvrVctPNntmVQNY.jpg",
-                type: "movie",
-                quality: "HD"
-            },
-            {
-                id: 787699,
-                title: "Wonka",
-                year: 2023,
-                rating: 7.2,
-                poster: "https://image.tmdb.org/t/p/w500/qhb1qOilapbapxWQn9jtRCMwXJF.jpg",
-                backdrop: "https://image.tmdb.org/t/p/original/yDHYTfA3R0jFYba16jBB1ef8oIt.jpg",
-                type: "movie",
-                quality: "HD"
-            },
-            {
-                id: 848538,
-                title: "Argylle",
-                year: 2024,
-                rating: 6.3,
-                poster: "https://image.tmdb.org/t/p/w500/95VlSEfLMqeX36UVcHJuNlWEpwf.jpg",
-                backdrop: "https://image.tmdb.org/t/p/original/6lE2e6j8qbtQR8aHxQNJlwxdmKV.jpg",
-                type: "movie",
-                quality: "HD"
-            },
-            {
-                id: 693134,
-                title: "Duna: Parte Dois",
-                year: 2024,
-                rating: 8.5,
-                poster: "https://image.tmdb.org/t/p/w500/8b8R8l88Qje9dn9OE8PY05Nxl1X.jpg",
-                backdrop: "https://image.tmdb.org/t/p/original/xOMo8BRK7PfcJv9JCnx7s5hj0PX.jpg",
-                type: "movie",
-                quality: "4K"
-            },
-            {
-                id: 786892,
-                title: "Fundadores",
-                year: 2023,
-                rating: 6.9,
-                poster: "https://image.tmdb.org/t/p/w500/rugyJdeoJm7cSJL1q4jBpTNbxyU.jpg",
-                backdrop: "https://image.tmdb.org/t/p/original/5JfkWpD6LlQK2d4bSr0K1uVGNZA.jpg",
-                type: "movie",
-                quality: "HD"
-            }
+            { id: 572802, title: "Aquaman and the Lost Kingdom", year: 2023, rating: 6.9, poster: "https://image.tmdb.org/t/p/w500/7lTnXOy0iNtBAdRP3TZvaKJ77F6.jpg", backdrop: "https://image.tmdb.org/t/p/original/jXJxMcVoEuXzym3vFnjqDW4ifo6.jpg", type: "movie", quality: "HD" },
+            { id: 866398, title: "Blue Beetle", year: 2023, rating: 7.1, poster: "https://image.tmdb.org/t/p/w500/mXLOHHc1Zeuwsl4xYKjKh2280oL.jpg", backdrop: "https://image.tmdb.org/t/p/original/rLb2cwF3Pazuxaj0sRXQ037tGI1.jpg", type: "movie", quality: "HD" },
+            { id: 569094, title: "Spider-Man: Across the Spider-Verse", year: 2023, rating: 8.7, poster: "https://image.tmdb.org/t/p/w500/qNBAXBIQlnOThrVvA6mA2B5ber.jpg", backdrop: "https://image.tmdb.org/t/p/original/4HodYYKEIsGOdinkGi2Ucz6X9i0.jpg", type: "movie", quality: "4K" },
+            { id: 940551, title: "Migration", year: 2023, rating: 7.5, poster: "https://image.tmdb.org/t/p/w500/ldfCF9RhR40mppkzmftxapaHTo.jpg", backdrop: "https://image.tmdb.org/t/p/original/tLL1emByuro2PvrVctPNntmVQNY.jpg", type: "movie", quality: "HD" },
+            { id: 787699, title: "Wonka", year: 2023, rating: 7.2, poster: "https://image.tmdb.org/t/p/w500/qhb1qOilapbapxWQn9jtRCMwXJF.jpg", backdrop: "https://image.tmdb.org/t/p/original/yDHYTfA3R0jFYba16jBB1ef8oIt.jpg", type: "movie", quality: "HD" },
+            { id: 848538, title: "Argylle", year: 2024, rating: 6.3, poster: "https://image.tmdb.org/t/p/w500/95VlSEfLMqeX36UVcHJuNlWEpwf.jpg", backdrop: "https://image.tmdb.org/t/p/original/6lE2e6j8qbtQR8aHxQNJlwxdmKV.jpg", type: "movie", quality: "HD" },
+            { id: 693134, title: "Dune: Part Two", year: 2024, rating: 8.5, poster: "https://image.tmdb.org/t/p/w500/8b8R8l88Qje9dn9OE8PY05Nxl1X.jpg", backdrop: "https://image.tmdb.org/t/p/original/xOMo8BRK7PfcJv9JCnx7s5hj0PX.jpg", type: "movie", quality: "4K" },
+            { id: 550, title: "Fight Club", year: 1999, rating: 8.4, poster: "https://image.tmdb.org/t/p/w500/pB8BM7pdSp6B6Ih7QZ4DrQ3PmJK.jpg", backdrop: "https://image.tmdb.org/t/p/original/hZkgoQYus5vegHoetLkCJzb17zJ.jpg", type: "movie", quality: "HD" }
         ];
         
-        // Series populares
         const series = [
-            {
-                id: 84958,
-                title: "Loki",
-                year: 2021,
-                rating: 8.2,
-                poster: "https://image.tmdb.org/t/p/w500/voHUmluYmKyleFkTu3lOXQG702u.jpg",
-                backdrop: "https://image.tmdb.org/t/p/original/q3jHCb4dMfYF6ojikKuHd6LscxC.jpg",
-                type: "tv",
-                seasons: 2,
-                currentSeason: 1,
-                currentEpisode: 1,
-                quality: "4K"
-            },
-            {
-                id: 1396,
-                title: "Breaking Bad",
-                year: 2008,
-                rating: 9.5,
-                poster: "https://image.tmdb.org/t/p/w500/ggFHVNu6YYI5L9pCfOacjizRGt.jpg",
-                backdrop: "https://image.tmdb.org/t/p/original/tsRy63Mu5cu8etL1X7ZLyf7UP1M.jpg",
-                type: "tv",
-                seasons: 5,
-                currentSeason: 1,
-                currentEpisode: 1,
-                quality: "HD"
-            },
-            {
-                id: 94997,
-                title: "House of the Dragon",
-                year: 2022,
-                rating: 8.4,
-                poster: "https://image.tmdb.org/t/p/w500/z2yahl2uefxDCl0nogcRBstwruJ.jpg",
-                backdrop: "https://image.tmdb.org/t/p/original/etj8E2o0Bud0HkONVQPjyCkIvpv.jpg",
-                type: "tv",
-                seasons: 2,
-                currentSeason: 1,
-                currentEpisode: 1,
-                quality: "4K"
-            },
-            {
-                id: 1399,
-                title: "Game of Thrones",
-                year: 2011,
-                rating: 8.4,
-                poster: "https://image.tmdb.org/t/p/w500/1XS1oqL89opfnbLl8WnZY1O1uJx.jpg",
-                backdrop: "https://image.tmdb.org/t/p/original/suopoADq0k8YZr4dQXcU6pToj6s.jpg",
-                type: "tv",
-                seasons: 8,
-                currentSeason: 1,
-                currentEpisode: 1,
-                quality: "HD"
-            },
-            {
-                id: 92830,
-                title: "The Witcher",
-                year: 2019,
-                rating: 8.1,
-                poster: "https://image.tmdb.org/t/p/w500/7vjaCdMw15FEbXyLQTVa04URsPm.jpg",
-                backdrop: "https://image.tmdb.org/t/p/original/jBJWaqoSCiARWtfV0GlqHrcdidd.jpg",
-                type: "tv",
-                seasons: 3,
-                currentSeason: 1,
-                currentEpisode: 1,
-                quality: "HD"
-            },
-            {
-                id: 60735,
-                title: "The Flash",
-                year: 2014,
-                rating: 7.8,
-                poster: "https://image.tmdb.org/t/p/w500/lJA2RCMfsWoskqlQhXPSLFQGXEJ.jpg",
-                backdrop: "https://image.tmdb.org/t/p/original/z59kJfcElR9eHO9rJbWp4qWMuee.jpg",
-                type: "tv",
-                seasons: 9,
-                currentSeason: 1,
-                currentEpisode: 1,
-                quality: "HD"
-            },
-            {
-                id: 66732,
-                title: "Stranger Things",
-                year: 2016,
-                rating: 8.6,
-                poster: "https://image.tmdb.org/t/p/w500/49WJfeN0moxb9IPfGn8AIqMGskD.jpg",
-                backdrop: "https://image.tmdb.org/t/p/original/56v2KjBlU4XaOv9rVYEQypROD7P.jpg",
-                type: "tv",
-                seasons: 4,
-                currentSeason: 1,
-                currentEpisode: 1,
-                quality: "4K"
-            },
-            {
-                id: 60625,
-                title: "Rick and Morty",
-                year: 2013,
-                rating: 8.7,
-                poster: "https://image.tmdb.org/t/p/w500/gdIrmf2DdY5mgN6ycVP0XlzKzbE.jpg",
-                backdrop: "https://image.tmdb.org/t/p/original/guIse6tcPvLYTqSC3Mh7GgzU9dp.jpg",
-                type: "tv",
-                seasons: 7,
-                currentSeason: 1,
-                currentEpisode: 1,
-                quality: "HD"
-            }
+            { id: 84958, title: "Loki", year: 2021, rating: 8.2, poster: "https://image.tmdb.org/t/p/w500/voHUmluYmKyleFkTu3lOXQG702u.jpg", backdrop: "https://image.tmdb.org/t/p/original/q3jHCb4dMfYF6ojikKuHd6LscxC.jpg", type: "tv", seasons: 2, currentSeason: 1, currentEpisode: 1, quality: "4K" },
+            { id: 1396, title: "Breaking Bad", year: 2008, rating: 9.5, poster: "https://image.tmdb.org/t/p/w500/ggFHVNu6YYI5L9pCfOacjizRGt.jpg", backdrop: "https://image.tmdb.org/t/p/original/tsRy63Mu5cu8etL1X7ZLyf7UP1M.jpg", type: "tv", seasons: 5, currentSeason: 1, currentEpisode: 1, quality: "HD" },
+            { id: 94997, title: "House of the Dragon", year: 2022, rating: 8.4, poster: "https://image.tmdb.org/t/p/w500/z2yahl2uefxDCl0nogcRBstwruJ.jpg", backdrop: "https://image.tmdb.org/t/p/original/etj8E2o0Bud0HkONVQPjyCkIvpv.jpg", type: "tv", seasons: 2, currentSeason: 1, currentEpisode: 1, quality: "4K" },
+            { id: 1399, title: "Game of Thrones", year: 2011, rating: 8.4, poster: "https://image.tmdb.org/t/p/w500/1XS1oqL89opfnbLl8WnZY1O1uJx.jpg", backdrop: "https://image.tmdb.org/t/p/original/suopoADq0k8YZr4dQXcU6pToj6s.jpg", type: "tv", seasons: 8, currentSeason: 1, currentEpisode: 1, quality: "HD" },
+            { id: 92830, title: "The Witcher", year: 2019, rating: 8.1, poster: "https://image.tmdb.org/t/p/w500/7vjaCdMw15FEbXyLQTVa04URsPm.jpg", backdrop: "https://image.tmdb.org/t/p/original/jBJWaqoSCiARWtfV0GlqHrcdidd.jpg", type: "tv", seasons: 3, currentSeason: 1, currentEpisode: 1, quality: "HD" },
+            { id: 60735, title: "The Flash", year: 2014, rating: 7.8, poster: "https://image.tmdb.org/t/p/w500/lJA2RCMfsWoskqlQhXPSLFQGXEJ.jpg", backdrop: "https://image.tmdb.org/t/p/original/z59kJfcElR9eHO9rJbWp4qWMuee.jpg", type: "tv", seasons: 9, currentSeason: 1, currentEpisode: 1, quality: "HD" },
+            { id: 66732, title: "Stranger Things", year: 2016, rating: 8.6, poster: "https://image.tmdb.org/t/p/w500/49WJfeN0moxb9IPfGn8AIqMGskD.jpg", backdrop: "https://image.tmdb.org/t/p/original/56v2KjBlU4XaOv9rVYEQypROD7P.jpg", type: "tv", seasons: 4, currentSeason: 1, currentEpisode: 1, quality: "4K" },
+            { id: 60625, title: "Rick and Morty", year: 2013, rating: 8.7, poster: "https://image.tmdb.org/t/p/w500/gdIrmf2DdY5mgN6ycVP0XlzKzbE.jpg", backdrop: "https://image.tmdb.org/t/p/original/guIse6tcPvLYTqSC3Mh7GgzU9dp.jpg", type: "tv", seasons: 7, currentSeason: 1, currentEpisode: 1, quality: "HD" }
         ];
         
-        // Lancamentos recentes
         const releases = [
-            {
-                id: 550,
-                title: "Clube da Luta",
-                year: 1999,
-                rating: 8.4,
-                poster: "https://image.tmdb.org/t/p/w500/pB8BM7pdSp6B6Ih7QZ4DrQ3PmJK.jpg",
-                backdrop: "https://image.tmdb.org/t/p/original/hZkgoQYus5vegHoetLkCJzb17zJ.jpg",
-                type: "movie",
-                quality: "HD"
-            },
-            {
-                id: 27205,
-                title: "A Origem",
-                year: 2010,
-                rating: 8.4,
-                poster: "https://image.tmdb.org/t/p/w500/oYuLEt3zVCKq57qu2F8dT7NIa6f.jpg",
-                backdrop: "https://image.tmdb.org/t/p/original/8ZTVqvKDQ8emSGUEMjsS4yHAwrp.jpg",
-                type: "movie",
-                quality: "HD"
-            },
-            {
-                id: 155,
-                title: "O Cavaleiro das Trevas",
-                year: 2008,
-                rating: 9.0,
-                poster: "https://image.tmdb.org/t/p/w500/qJ2tW6WMUDux911r6m7haRef0WH.jpg",
-                backdrop: "https://image.tmdb.org/t/p/original/nMKdUUepR0i5zn0y1T4CsSB5chy.jpg",
-                type: "movie",
-                quality: "HD"
-            },
-            {
-                id: 238,
-                title: "O Poderoso Chefao",
-                year: 1972,
-                rating: 9.2,
-                poster: "https://image.tmdb.org/t/p/w500/3bhkrj58Vtu7enYsRolD1fZdja1.jpg",
-                backdrop: "https://image.tmdb.org/t/p/original/tmU7GeKVybMWFButWEGl2M4GeiP.jpg",
-                type: "movie",
-                quality: "HD"
-            },
-            {
-                id: 680,
-                title: "Pulp Fiction",
-                year: 1994,
-                rating: 8.5,
-                poster: "https://image.tmdb.org/t/p/w500/d5iIlFn5s0ImszYzBPb8JPIfbXD.jpg",
-                backdrop: "https://image.tmdb.org/t/p/original/suaEOtk1N1sgg2MTM7oZd2cfVp3.jpg",
-                type: "movie",
-                quality: "HD"
-            },
-            {
-                id: 278,
-                title: "Um Sonho de Liberdade",
-                year: 1994,
-                rating: 9.3,
-                poster: "https://image.tmdb.org/t/p/w500/9cqNxx0GxF0bflZmeSMuL5tnGzr.jpg",
-                backdrop: "https://image.tmdb.org/t/p/original/kXfqcdQKsToO0OUXHcrrNCHDBzO.jpg",
-                type: "movie",
-                quality: "HD"
-            },
-            {
-                id: 13,
-                title: "Forrest Gump",
-                year: 1994,
-                rating: 8.8,
-                poster: "https://image.tmdb.org/t/p/w500/arw2vcBveWOVZr6pxd9XTd1TdQa.jpg",
-                backdrop: "https://image.tmdb.org/t/p/original/3h1JZGDhZ8nzxdgvkxha0qBqi05.jpg",
-                type: "movie",
-                quality: "HD"
-            },
-            {
-                id: 424,
-                title: "Cidadao Kane",
-                year: 1941,
-                rating: 8.1,
-                poster: "https://image.tmdb.org/t/p/w500/psj3NRH4FY7DbwvYwHi5LFHQ7jG.jpg",
-                backdrop: "https://image.tmdb.org/t/p/original/rXu4f2veMcclYaBVAYHwpNSYpRc.jpg",
-                type: "movie",
-                quality: "HD"
-            }
+            { id: 27205, title: "Inception", year: 2010, rating: 8.4, poster: "https://image.tmdb.org/t/p/w500/oYuLEt3zVCKq57qu2F8dT7NIa6f.jpg", backdrop: "https://image.tmdb.org/t/p/original/8ZTVqvKDQ8emSGUEMjsS4yHAwrp.jpg", type: "movie", quality: "HD" },
+            { id: 155, title: "The Dark Knight", year: 2008, rating: 9.0, poster: "https://image.tmdb.org/t/p/w500/qJ2tW6WMUDux911r6m7haRef0WH.jpg", backdrop: "https://image.tmdb.org/t/p/original/nMKdUUepR0i5zn0y1T4CsSB5chy.jpg", type: "movie", quality: "HD" },
+            { id: 238, title: "The Godfather", year: 1972, rating: 9.2, poster: "https://image.tmdb.org/t/p/w500/3bhkrj58Vtu7enYsRolD1fZdja1.jpg", backdrop: "https://image.tmdb.org/t/p/original/tmU7GeKVybMWFButWEGl2M4GeiP.jpg", type: "movie", quality: "HD" },
+            { id: 680, title: "Pulp Fiction", year: 1994, rating: 8.5, poster: "https://image.tmdb.org/t/p/w500/d5iIlFn5s0ImszYzBPb8JPIfbXD.jpg", backdrop: "https://image.tmdb.org/t/p/original/suaEOtk1N1sgg2MTM7oZd2cfVp3.jpg", type: "movie", quality: "HD" },
+            { id: 278, title: "The Shawshank Redemption", year: 1994, rating: 9.3, poster: "https://image.tmdb.org/t/p/w500/9cqNxx0GxF0bflZmeSMuL5tnGzr.jpg", backdrop: "https://image.tmdb.org/t/p/original/kXfqcdQKsToO0OUXHcrrNCHDBzO.jpg", type: "movie", quality: "HD" },
+            { id: 13, title: "Forrest Gump", year: 1994, rating: 8.8, poster: "https://image.tmdb.org/t/p/w500/arw2vcBveWOVZr6pxd9XTd1TdQa.jpg", backdrop: "https://image.tmdb.org/t/p/original/3h1JZGDhZ8nzxdgvkxha0qBqi05.jpg", type: "movie", quality: "HD" },
+            { id: 424, title: "Citizen Kane", year: 1941, rating: 8.1, poster: "https://image.tmdb.org/t/p/w500/psj3NRH4FY7DbwvYwHi5LFHQ7jG.jpg", backdrop: "https://image.tmdb.org/t/p/original/rXu4f2veMcclYaBVAYHwpNSYpRc.jpg", type: "movie", quality: "HD" },
+            { id: 122, title: "The Lord of the Rings: The Fellowship of the Ring", year: 2001, rating: 8.7, poster: "https://image.tmdb.org/t/p/w500/6oom5QYQ2yQTMJIbnvbkBLBLcxx.jpg", backdrop: "https://image.tmdb.org/t/p/original/56zTpe2xvaA4alU51sRdCNE8Bfg.jpg", type: "movie", quality: "HD" }
         ];
-        
+
         /* ========================================
-           VARIAVEIS GLOBAIS
+           CONFIGURACAO DO PLAYER COM PT-BR
+           Usando VidSrc Pro que tem mais conteudo dublado
         ======================================== */
-        let currentUser = null; // Usuario atual logado
-        let featuredItem = null; // Item em destaque no hero
-        let currentPlayingItem = null; // Item sendo reproduzido
         
-        /* ========================================
-           CONFIGURACAO DA API DE EMBED
-           Usando VidSrc como provedor de video
-        ======================================== */
         const EMBED_CONFIG = {
-            // VidSrc - Funciona bem com TMDB IDs
-            baseUrl: 'https://vidsrc.xyz/embed',
-            // Alternativas (caso precise):
-            // baseUrl: 'https://2embed.org/embed',
-            // baseUrl: 'https://embedsu.com/embed',
+            // VidSrc Pro - tem melhor suporte para PT-BR
+            baseUrl: 'https://vidsrc.pro/embed',
+            // Parametros para portugues
+            primaryColor: '9333ea',
+            autoPlay: true
         };
         
-        /**
-         * Gera a URL do player baseado no tipo de conteudo
-         * @param {Object} item - Item a ser reproduzido
-         * @returns {string} - URL do player
-         */
-        function getPlayerUrl(item) {
-            if (item.type === 'movie') {
-                // URL para filmes: /embed/movie/{tmdbId}
-                return `${EMBED_CONFIG.baseUrl}/movie/${item.id}`;
-            } else {
-                // URL para series: /embed/tv/{tmdbId}/{season}/{episode}
-                return `${EMBED_CONFIG.baseUrl}/tv/${item.id}/${item.currentSeason}/${item.currentEpisode}`;
+        // Lista de provedores alternativos (caso um nao funcione)
+        const PROVIDERS = [
+            {
+                name: 'VidSrc Pro',
+                getUrl: (item) => item.type === 'movie' 
+                    ? `https://vidsrc.pro/embed/movie/${item.id}`
+                    : `https://vidsrc.pro/embed/tv/${item.id}/${item.currentSeason}/${item.currentEpisode}`
+            },
+            {
+                name: 'VidSrc ICU',
+                getUrl: (item) => item.type === 'movie' 
+                    ? `https://vidsrc.icu/embed/movie/${item.id}`
+                    : `https://vidsrc.icu/embed/tv/${item.id}/${item.currentSeason}/${item.currentEpisode}`
+            },
+            {
+                name: '2Embed',
+                getUrl: (item) => item.type === 'movie' 
+                    ? `https://www.2embed.cc/embed/${item.id}`
+                    : `https://www.2embed.cc/embedtv/${item.id}&s=${item.currentSeason}&e=${item.currentEpisode}`
+            },
+            {
+                name: 'Embedsu',
+                getUrl: (item) => item.type === 'movie' 
+                    ? `https://embedsu.com/embed/movie/${item.id}`
+                    : `https://embedsu.com/embed/tv/${item.id}/${item.currentSeason}/${item.currentEpisode}`
+            },
+            {
+                name: 'VidSrc XYZ',
+                getUrl: (item) => item.type === 'movie' 
+                    ? `https://vidsrc.xyz/embed/movie/${item.id}`
+                    : `https://vidsrc.xyz/embed/tv/${item.id}/${item.currentSeason}/${item.currentEpisode}`
             }
-        }
+        ];
         
-        /* ========================================
-           INICIALIZACAO DO SITE
-           Configuracoes iniciais ao carregar
-        ======================================== */
+        let currentProviderIndex = 0;
+        
+        function getPlayerUrl(item) {
+            return PROVIDERS[currentProviderIndex].getUrl(item);
+        }
+
+        let currentUser = null;
+        let featuredItem = null;
+        let currentPlayingItem = null;
+        
         document.addEventListener('DOMContentLoaded', function() {
-            // Verifica se ha usuario salvo no localStorage
             checkSavedUser();
-            
-            // Configura o tema salvo
             checkSavedTheme();
-            
-            // Renderiza os carrosseis
             renderCarousel('movies-carousel', movies);
             renderCarousel('series-carousel', series);
             renderCarousel('releases-carousel', releases);
-            
-            // Configura o hero com item em destaque
             setupHero();
-            
-            // Cria particulas animadas
             createParticles();
-            
-            // Configura scroll listener para header
             setupScrollListener();
-            
-            // Configura animacoes de reveal
             setupRevealAnimations();
-            
-            // Configura navegacao suave
             setupSmoothNavigation();
-            
-            // Configura toggle de tema
             document.getElementById('themeToggle').addEventListener('click', toggleTheme);
         });
         
-        /* ========================================
-           SISTEMA DE AUTENTICACAO
-           Login, cadastro e modo convidado
-        ======================================== */
-        
-        /**
-         * Verifica se existe usuario salvo no localStorage
-         */
         function checkSavedUser() {
             const savedUser = localStorage.getItem('ldxflix_user');
             if (savedUser) {
@@ -1641,9 +921,6 @@
             }
         }
         
-        /**
-         * Atualiza a interface para mostrar o usuario logado
-         */
         function updateUserInterface() {
             const authButtons = document.querySelector('.auth-buttons');
             const userProfile = document.querySelector('.user-profile');
@@ -1663,22 +940,14 @@
             }
         }
         
-        /**
-         * Abre o modal de login
-         */
         function openLoginModal() {
             document.getElementById('loginModal').classList.add('active');
             document.body.style.overflow = 'hidden';
         }
         
-        /**
-         * Fecha o modal de login
-         */
         function closeLoginModal() {
             document.getElementById('loginModal').classList.remove('active');
             document.body.style.overflow = '';
-            
-            // Reseta para o formulario de login
             document.getElementById('loginForm').classList.remove('hidden');
             document.getElementById('registerForm').classList.add('hidden');
             document.getElementById('modalTitle').textContent = 'Entrar';
@@ -1686,9 +955,6 @@
             document.getElementById('toggleBtn').textContent = 'Cadastre-se';
         }
         
-        /**
-         * Alterna entre formulario de login e cadastro
-         */
         function toggleAuthForm() {
             const loginForm = document.getElementById('loginForm');
             const registerForm = document.getElementById('registerForm');
@@ -1697,14 +963,12 @@
             const toggleBtn = document.getElementById('toggleBtn');
             
             if (loginForm.classList.contains('hidden')) {
-                // Mostra login
                 loginForm.classList.remove('hidden');
                 registerForm.classList.add('hidden');
                 modalTitle.textContent = 'Entrar';
                 toggleText.textContent = 'Nao tem uma conta?';
                 toggleBtn.textContent = 'Cadastre-se';
             } else {
-                // Mostra cadastro
                 loginForm.classList.add('hidden');
                 registerForm.classList.remove('hidden');
                 modalTitle.textContent = 'Criar Conta';
@@ -1713,129 +977,55 @@
             }
         }
         
-        /**
-         * Processa o login do usuario
-         * @param {Event} event - Evento do formulario
-         */
         function handleLogin(event) {
             event.preventDefault();
-            
             const email = document.getElementById('loginEmail').value;
-            
-            // Simula validacao
-            currentUser = {
-                name: email.split('@')[0],
-                email: email,
-                isGuest: false
-            };
-            
-            // Salva no localStorage
+            currentUser = { name: email.split('@')[0], email: email, isGuest: false };
             localStorage.setItem('ldxflix_user', JSON.stringify(currentUser));
-            
-            // Atualiza interface
             updateUserInterface();
             closeLoginModal();
-            
-            // Mostra notificacao
             showNotification('Bem-vindo de volta, ' + currentUser.name + '!', 'success');
         }
         
-        /**
-         * Processa o cadastro do usuario
-         * @param {Event} event - Evento do formulario
-         */
         function handleRegister(event) {
             event.preventDefault();
-            
             const name = document.getElementById('registerName').value;
             const email = document.getElementById('registerEmail').value;
-            
-            // Simula criacao de conta
-            currentUser = {
-                name: name,
-                email: email,
-                isGuest: false
-            };
-            
-            // Salva no localStorage
+            currentUser = { name: name, email: email, isGuest: false };
             localStorage.setItem('ldxflix_user', JSON.stringify(currentUser));
-            
-            // Atualiza interface
             updateUserInterface();
             closeLoginModal();
-            
-            showNotification('Conta criada com sucesso! Bem-vindo, ' + name + '!', 'success');
+            showNotification('Conta criada com sucesso!', 'success');
         }
         
-        /**
-         * Entra como convidado
-         */
         function loginAsGuest() {
-            currentUser = {
-                name: 'Convidado',
-                email: 'guest@ldxflix.com',
-                isGuest: true
-            };
-            
+            currentUser = { name: 'Convidado', email: 'guest@ldxflix.com', isGuest: true };
             localStorage.setItem('ldxflix_user', JSON.stringify(currentUser));
-            
             updateUserInterface();
             closeLoginModal();
-            
             showNotification('Bem-vindo, Convidado!', 'success');
         }
         
-        /**
-         * Realiza logout do usuario
-         */
         function logout() {
             currentUser = null;
             localStorage.removeItem('ldxflix_user');
-            
             updateUserInterface();
             showNotification('Voce saiu da sua conta', 'info');
         }
         
-        /* ========================================
-           SISTEMA DE TEMA
-           Alternancia entre Dark e Light
-        ======================================== */
-        
-        /**
-         * Verifica tema salvo no localStorage
-         */
         function checkSavedTheme() {
             const savedTheme = localStorage.getItem('ldxflix_theme');
-            if (savedTheme === 'light') {
-                document.body.classList.add('light-theme');
-            }
+            if (savedTheme === 'light') document.body.classList.add('light-theme');
         }
         
-        /**
-         * Alterna entre tema dark e light
-         */
         function toggleTheme() {
             document.body.classList.toggle('light-theme');
-            
-            // Salva preferencia
-            const isLight = document.body.classList.contains('light-theme');
-            localStorage.setItem('ldxflix_theme', isLight ? 'light' : 'dark');
+            localStorage.setItem('ldxflix_theme', document.body.classList.contains('light-theme') ? 'light' : 'dark');
         }
         
-        /* ========================================
-           RENDERIZACAO DE CARROSSEL
-           Gera cards de filmes/series
-        ======================================== */
-        
-        /**
-         * Renderiza os cards no carrossel
-         * @param {string} containerId - ID do container
-         * @param {Array} items - Array de itens
-         */
         function renderCarousel(containerId, items) {
             const container = document.getElementById(containerId);
             if (!container) return;
-            
             container.innerHTML = '';
             
             items.forEach((item, index) => {
@@ -1845,14 +1035,10 @@
                 
                 card.innerHTML = `
                     <div class="card-movie-poster">
-                        <img src="${item.poster}" alt="${item.title}" loading="lazy" 
-                             onerror="this.src='https://via.placeholder.com/300x450?text=Sem+Imagem'">
+                        <img src="${item.poster}" alt="${item.title}" loading="lazy" onerror="this.src='https://via.placeholder.com/300x450?text=Sem+Imagem'">
                         <div class="card-movie-overlay">
-                            <button class="btn-primary py-2 px-4 text-sm flex items-center justify-center gap-2"
-                                    onclick="event.stopPropagation(); playItem(${item.id})">
-                                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd"/>
-                                </svg>
+                            <button class="btn-primary py-2 px-4 text-sm flex items-center justify-center gap-2" onclick="event.stopPropagation(); playItem(${item.id})">
+                                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd"/></svg>
                                 Assistir
                             </button>
                         </div>
@@ -1863,111 +1049,53 @@
                     </div>
                 `;
                 
-                // Adiciona evento de clique no card
-                card.addEventListener('click', function() {
-                    playItem(item.id);
-                });
-                
+                card.addEventListener('click', function() { playItem(item.id); });
                 container.appendChild(card);
             });
         }
         
-        /**
-         * Navega o carrossel
-         * @param {string} containerId - ID do container
-         * @param {number} direction - Direcao (-1 ou 1)
-         */
         function scrollCarousel(containerId, direction) {
             const container = document.getElementById(containerId);
-            const scrollAmount = container.clientWidth * 0.8;
-            container.scrollBy({
-                left: direction * scrollAmount,
-                behavior: 'smooth'
-            });
+            container.scrollBy({ left: direction * container.clientWidth * 0.8, behavior: 'smooth' });
         }
         
-        /* ========================================
-           HERO SECTION
-           Configuracao do banner principal
-        ======================================== */
-        
-        /**
-         * Configura o hero com filme/serie em destaque
-         */
         function setupHero() {
-            // Seleciona um item aleatorio como destaque
             const allItems = [...movies, ...series];
             featuredItem = allItems[Math.floor(Math.random() * allItems.length)];
             
-            // Atualiza elementos do hero
             document.getElementById('heroBg').style.backgroundImage = `url(${featuredItem.backdrop})`;
             document.getElementById('heroTitle').textContent = featuredItem.title;
-            document.getElementById('heroDescription').textContent = `Assista agora ${featuredItem.title} em alta qualidade na LDXFLIX. A melhor experiencia de streaming voce encontra aqui.`;
+            document.getElementById('heroDescription').textContent = `Assista agora ${featuredItem.title} em alta qualidade na LDXFLIX.`;
             document.getElementById('heroRating').textContent = featuredItem.rating.toFixed(1);
             document.getElementById('heroYear').textContent = featuredItem.year;
             document.getElementById('heroQuality').textContent = featuredItem.quality;
             
-            // Anima entrada do conteudo
-            setTimeout(() => {
-                document.getElementById('heroContent').classList.add('active');
-            }, 300);
+            setTimeout(() => document.getElementById('heroContent').classList.add('active'), 300);
         }
         
-        /**
-         * Reproduz o item em destaque
-         */
-        function playFeatured() {
-            if (featuredItem) {
-                playItem(featuredItem.id);
-            }
-        }
+        function playFeatured() { if (featuredItem) playItem(featuredItem.id); }
         
-        /**
-         * Adiciona item a lista do usuario
-         */
         function addToList() {
-            if (!currentUser) {
-                openLoginModal();
-                return;
-            }
+            if (!currentUser) { openLoginModal(); return; }
             showNotification('Adicionado a sua lista!', 'success');
         }
         
-        /* ========================================
-           PLAYER DE VIDEO
-           Sistema de reproducao
-        ======================================== */
-        
-        /**
-         * Encontra um item pelo ID
-         * @param {number} id - ID do item
-         * @returns {Object|null} - Item encontrado ou null
-         */
         function findItemById(id) {
-            const allItems = [...movies, ...series, ...releases];
-            return allItems.find(item => item.id === id) || null;
+            return [...movies, ...series, ...releases].find(item => item.id === id) || null;
         }
         
-        /**
-         * Abre o player para reproduzir item
-         * @param {number} itemId - ID do item a ser reproduzido
-         */
         function playItem(itemId) {
-            // Verifica se usuario esta logado
             if (!currentUser) {
                 openLoginModal();
                 showNotification('Faca login para assistir', 'info');
                 return;
             }
             
-            // Encontra o item
             let item = findItemById(itemId);
-            if (!item) {
-                showNotification('Item nao encontrado', 'error');
-                return;
-            }
+            if (!item) { showNotification('Item nao encontrado', 'error'); return; }
             
             currentPlayingItem = { ...item };
+            currentProviderIndex = 0;
             
             const playerOverlay = document.getElementById('playerOverlay');
             const videoFrame = document.getElementById('videoFrame');
@@ -1976,19 +1104,11 @@
             const seriesControls = document.getElementById('seriesControls');
             const playerLoading = document.getElementById('playerLoading');
             
-            // Atualiza titulo
             playerTitle.textContent = item.title;
-            
-            // Mostra loading
             playerLoading.classList.remove('hidden');
-            
-            // Monta URL do player
-            const playerUrl = getPlayerUrl(currentPlayingItem);
             
             if (item.type === 'tv') {
                 playerSubtitle.textContent = `Temporada ${item.currentSeason} | Episodio ${item.currentEpisode}`;
-                
-                // Mostra controles de temporada/episodio
                 seriesControls.classList.remove('hidden');
                 seriesControls.classList.add('flex');
                 setupSeriesControls(item);
@@ -1998,34 +1118,23 @@
                 seriesControls.classList.remove('flex');
             }
             
-            // Carrega o iframe
-            videoFrame.src = playerUrl;
+            videoFrame.src = getPlayerUrl(currentPlayingItem);
             
-            // Remove loading quando o iframe carregar
             videoFrame.onload = function() {
-                setTimeout(() => {
-                    playerLoading.classList.add('hidden');
-                }, 1000);
+                setTimeout(() => playerLoading.classList.add('hidden'), 1000);
             };
             
-            // Mostra o player
             playerOverlay.classList.add('active');
             document.body.style.overflow = 'hidden';
         }
         
-        /**
-         * Configura controles de temporada e episodio
-         * @param {Object} item - Serie sendo reproduzida
-         */
         function setupSeriesControls(item) {
             const seasonSelect = document.getElementById('seasonSelect');
             const episodeSelect = document.getElementById('episodeSelect');
             
-            // Limpa opcoes existentes
             seasonSelect.innerHTML = '';
             episodeSelect.innerHTML = '';
             
-            // Adiciona temporadas
             for (let i = 1; i <= item.seasons; i++) {
                 const option = document.createElement('option');
                 option.value = i;
@@ -2034,9 +1143,7 @@
                 seasonSelect.appendChild(option);
             }
             
-            // Adiciona episodios (assumindo 10 por temporada como padrao)
-            const episodeCount = item.episodeCount || 10;
-            for (let i = 1; i <= episodeCount; i++) {
+            for (let i = 1; i <= 10; i++) {
                 const option = document.createElement('option');
                 option.value = i;
                 option.textContent = `Episodio ${i}`;
@@ -2045,303 +1152,121 @@
             }
         }
         
-        /**
-         * Muda a temporada da serie
-         */
         function changeSeason() {
-            const season = document.getElementById('seasonSelect').value;
-            currentPlayingItem.currentSeason = parseInt(season);
+            currentPlayingItem.currentSeason = parseInt(document.getElementById('seasonSelect').value);
             currentPlayingItem.currentEpisode = 1;
-            
-            // Atualiza episodios
             setupSeriesControls(currentPlayingItem);
-            
-            // Recarrega player
             updatePlayerUrl();
         }
         
-        /**
-         * Muda o episodio da serie
-         */
         function changeEpisode() {
-            const episode = document.getElementById('episodeSelect').value;
-            currentPlayingItem.currentEpisode = parseInt(episode);
-            
-            // Recarrega player
+            currentPlayingItem.currentEpisode = parseInt(document.getElementById('episodeSelect').value);
             updatePlayerUrl();
         }
         
-        /**
-         * Atualiza URL do player
-         */
         function updatePlayerUrl() {
             const videoFrame = document.getElementById('videoFrame');
             const playerSubtitle = document.getElementById('playerSubtitle');
             const playerLoading = document.getElementById('playerLoading');
             
-            // Mostra loading
             playerLoading.classList.remove('hidden');
-            
-            const playerUrl = getPlayerUrl(currentPlayingItem);
-            videoFrame.src = playerUrl;
+            videoFrame.src = getPlayerUrl(currentPlayingItem);
             playerSubtitle.textContent = `Temporada ${currentPlayingItem.currentSeason} | Episodio ${currentPlayingItem.currentEpisode}`;
             
-            // Esconde loading apos carregar
             videoFrame.onload = function() {
-                setTimeout(() => {
-                    playerLoading.classList.add('hidden');
-                }, 1000);
+                setTimeout(() => playerLoading.classList.add('hidden'), 1000);
             };
         }
         
-        /**
-         * Fecha o player
-         */
         function closePlayer() {
-            const playerOverlay = document.getElementById('playerOverlay');
-            const videoFrame = document.getElementById('videoFrame');
-            
-            // Para o video
-            videoFrame.src = '';
-            
-            // Esconde o player
-            playerOverlay.classList.remove('active');
+            document.getElementById('videoFrame').src = '';
+            document.getElementById('playerOverlay').classList.remove('active');
             document.body.style.overflow = '';
             currentPlayingItem = null;
         }
         
-        /* ========================================
-           PARTICULAS ANIMADAS
-           Efeito visual no hero
-        ======================================== */
-        
-        /**
-         * Cria particulas flutuantes no hero
-         */
         function createParticles() {
             const container = document.getElementById('particles');
-            const particleCount = 20;
-            
-            for (let i = 0; i < particleCount; i++) {
+            for (let i = 0; i < 20; i++) {
                 const particle = document.createElement('div');
                 particle.className = 'particle';
-                
-                // Posicao aleatoria
                 particle.style.left = Math.random() * 100 + '%';
                 particle.style.top = Math.random() * 100 + '%';
-                
-                // Tamanho aleatorio
                 const size = Math.random() * 4 + 2;
                 particle.style.width = size + 'px';
                 particle.style.height = size + 'px';
-                
-                // Atraso aleatorio na animacao
                 particle.style.animationDelay = Math.random() * 15 + 's';
                 particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
-                
                 container.appendChild(particle);
             }
         }
         
-        /* ========================================
-           SCROLL LISTENER
-           Efeitos baseados em scroll
-        ======================================== */
-        
-        /**
-         * Configura listeners de scroll
-         */
         function setupScrollListener() {
             const header = document.getElementById('header');
-            
             window.addEventListener('scroll', function() {
-                if (window.scrollY > 50) {
-                    header.classList.add('scrolled');
-                } else {
-                    header.classList.remove('scrolled');
-                }
+                header.classList.toggle('scrolled', window.scrollY > 50);
             });
         }
         
-        /* ========================================
-           ANIMACOES DE REVEAL
-           Entrada de elementos ao scroll
-        ======================================== */
-        
-        /**
-         * Configura animacoes de reveal com IntersectionObserver
-         */
         function setupRevealAnimations() {
-            const observerOptions = {
-                root: null,
-                rootMargin: '0px',
-                threshold: 0.1
-            };
-            
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         entry.target.classList.add('active');
-                        
-                        // Anima itens com stagger
-                        const staggerItems = entry.target.querySelectorAll('.stagger-item');
-                        staggerItems.forEach((item, index) => {
-                            setTimeout(() => {
-                                item.classList.add('active');
-                            }, index * 100);
+                        entry.target.querySelectorAll('.stagger-item').forEach((item, index) => {
+                            setTimeout(() => item.classList.add('active'), index * 100);
                         });
                     }
                 });
-            }, observerOptions);
+            }, { threshold: 0.1 });
             
-            // Observa elementos com classe reveal
-            document.querySelectorAll('.reveal').forEach(el => {
-                observer.observe(el);
-            });
-            
-            // Observa carrosseis
-            document.querySelectorAll('.carousel-container').forEach(el => {
-                observer.observe(el);
-            });
+            document.querySelectorAll('.reveal, .carousel-container').forEach(el => observer.observe(el));
         }
         
-        /* ========================================
-           NAVEGACAO SUAVE
-           Scroll animado para secoes
-        ======================================== */
-        
-        /**
-         * Configura navegacao suave entre secoes
-         */
         function setupSmoothNavigation() {
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 anchor.addEventListener('click', function(e) {
                     e.preventDefault();
-                    
-                    const targetId = this.getAttribute('href');
-                    const targetElement = document.querySelector(targetId);
-                    
-                    if (targetElement) {
-                        // Fecha menu mobile se aberto
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
                         document.getElementById('navMenu').classList.remove('active');
                         document.getElementById('hamburger').classList.remove('active');
-                        
-                        // Scroll suave
-                        targetElement.scrollIntoView({
-                            behavior: 'smooth',
-                            block: 'start'
-                        });
+                        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
                     }
                 });
             });
         }
         
-        /* ========================================
-           MENU MOBILE
-           Controle do hamburger menu
-        ======================================== */
-        
-        /**
-         * Alterna visibilidade do menu mobile
-         */
         function toggleMobileMenu() {
-            const navMenu = document.getElementById('navMenu');
-            const hamburger = document.getElementById('hamburger');
-            
-            navMenu.classList.toggle('active');
-            hamburger.classList.toggle('active');
+            document.getElementById('navMenu').classList.toggle('active');
+            document.getElementById('hamburger').classList.toggle('active');
         }
         
-        /* ========================================
-           FORMULARIO DE CONTATO
-        ======================================== */
-        
-        /**
-         * Processa envio do formulario de contato
-         * @param {Event} event - Evento do formulario
-         */
         function handleContact(event) {
             event.preventDefault();
             showNotification('Mensagem enviada com sucesso!', 'success');
             event.target.reset();
         }
         
-        /* ========================================
-           SISTEMA DE NOTIFICACOES
-        ======================================== */
-        
-        /**
-         * Mostra uma notificacao toast
-         * @param {string} message - Mensagem a exibir
-         * @param {string} type - Tipo (success, error, info)
-         */
-        function showNotification(message, type = 'info') {
-            // Remove notificacao existente
+        function showNotification(message, type) {
             const existing = document.querySelector('.notification');
             if (existing) existing.remove();
             
-            // Cria elemento
             const notification = document.createElement('div');
             notification.className = 'notification';
-            notification.style.cssText = `
-                position: fixed;
-                bottom: 2rem;
-                right: 2rem;
-                padding: 1rem 1.5rem;
-                background: var(--bg-card);
-                border: 1px solid var(--border);
-                border-radius: 12px;
-                box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
-                z-index: 9999;
-                display: flex;
-                align-items: center;
-                gap: 0.75rem;
-                animation: slideIn 0.3s ease;
-                max-width: 400px;
-            `;
+            notification.style.cssText = `position: fixed; bottom: 2rem; right: 2rem; padding: 1rem 1.5rem; background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3); z-index: 9999; display: flex; align-items: center; gap: 0.75rem; animation: slideIn 0.3s ease; max-width: 400px;`;
             
-            // Icone baseado no tipo
-            let iconColor = '#9333ea';
-            let iconPath = '';
+            const colors = { success: '#22c55e', error: '#ef4444', info: '#3b82f6' };
+            const paths = { success: 'M5 13l4 4L19 7', error: 'M6 18L18 6M6 6l12 12', info: 'M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z' };
             
-            if (type === 'success') {
-                iconColor = '#22c55e';
-                iconPath = 'M5 13l4 4L19 7';
-            } else if (type === 'error') {
-                iconColor = '#ef4444';
-                iconPath = 'M6 18L18 6M6 6l12 12';
-            } else {
-                iconColor = '#3b82f6';
-                iconPath = 'M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z';
-            }
-            
-            notification.innerHTML = `
-                <svg class="w-5 h-5" style="color: ${iconColor}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="${iconPath}"/>
-                </svg>
-                <span>${message}</span>
-            `;
+            notification.innerHTML = `<svg class="w-5 h-5" style="color: ${colors[type] || colors.info}" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="${paths[type] || paths.info}"/></svg><span>${message}</span>`;
             
             document.body.appendChild(notification);
-            
-            // Remove apos 3 segundos
-            setTimeout(() => {
-                notification.style.animation = 'slideOut 0.3s ease forwards';
-                setTimeout(() => notification.remove(), 300);
-            }, 3000);
+            setTimeout(() => { notification.style.animation = 'slideOut 0.3s ease forwards'; setTimeout(() => notification.remove(), 300); }, 3000);
         }
         
-        /* ========================================
-           TECLADO - ACESSIBILIDADE
-           Atalhos de teclado para o player
-        ======================================== */
-        
         document.addEventListener('keydown', function(e) {
-            // ESC fecha modais e player
-            if (e.key === 'Escape') {
-                closePlayer();
-                closeLoginModal();
-            }
+            if (e.key === 'Escape') { closePlayer(); closeLoginModal(); }
         });
     </script>
 </body>
