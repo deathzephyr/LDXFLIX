@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LDXFLIX - Filmes e Séries</title>
+    <title>LDXFLIX - Filmes e Series</title>
     
     <!-- Google Fonts - Poppins -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -15,7 +15,7 @@
     
     <script>
         /* ========================================
-           CONFIGURAÇÃO DO TAILWIND
+           CONFIGURACAO DO TAILWIND
            Define cores customizadas e fontes
         ======================================== */
         tailwind.config = {
@@ -49,7 +49,7 @@
     <style>
         /* ========================================
            CSS CUSTOM VARIABLES - TEMAS
-           Variáveis para alternar entre Dark e Light
+           Variaveis para alternar entre Dark e Light
         ======================================== */
         :root {
             --bg-primary: #0a0a0f;
@@ -123,7 +123,7 @@
         }
         
         /* ========================================
-           HEADER E NAVEGAÇÃO
+           HEADER E NAVEGACAO
         ======================================== */
         .header {
             position: fixed;
@@ -217,7 +217,7 @@
             );
         }
         
-        /* Partículas flutuantes */
+        /* Particulas flutuantes */
         .particles {
             position: absolute;
             inset: 0;
@@ -253,7 +253,7 @@
         }
         
         /* ========================================
-           BOTÕES
+           BOTOES
         ======================================== */
         .btn-primary {
             background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
@@ -308,7 +308,7 @@
         }
         
         /* ========================================
-           CARROSSEL DE FILMES/SÉRIES
+           CARROSSEL DE FILMES/SERIES
         ======================================== */
         .carousel-section {
             padding: 2rem 0;
@@ -408,7 +408,7 @@
             color: var(--text-muted);
         }
         
-        /* Botões do carrossel */
+        /* Botoes do carrossel */
         .carousel-btn {
             position: absolute;
             top: 50%;
@@ -499,7 +499,7 @@
         }
         
         /* ========================================
-           PLAYER DE VÍDEO
+           PLAYER DE VIDEO
         ======================================== */
         .player-overlay {
             position: fixed;
@@ -524,6 +524,8 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
         }
         
         .player-container {
@@ -541,6 +543,22 @@
             border-radius: 12px;
             background: #000;
             border: 1px solid var(--border);
+        }
+        
+        /* Loading do player */
+        .player-loading {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            background: var(--bg-primary);
+        }
+        
+        .player-loading.hidden {
+            display: none;
         }
         
         /* ========================================
@@ -574,7 +592,7 @@
         }
         
         /* ========================================
-           SEÇÕES DE CONTEÚDO
+           SECOES DE CONTEUDO
         ======================================== */
         .section {
             padding: 4rem 0;
@@ -609,7 +627,7 @@
         }
         
         /* ========================================
-           ANIMAÇÕES DE ENTRADA
+           ANIMACOES DE ENTRADA
         ======================================== */
         .reveal {
             opacity: 0;
@@ -622,7 +640,7 @@
             transform: translateY(0);
         }
         
-        /* Animação stagger para cards */
+        /* Animacao stagger para cards */
         .stagger-item {
             opacity: 0;
             transform: translateY(20px);
@@ -676,6 +694,15 @@
             
             .card-movie {
                 width: 150px;
+            }
+            
+            .player-header {
+                padding: 0.75rem 1rem;
+            }
+            
+            .series-controls {
+                width: 100%;
+                justify-content: center;
             }
         }
         
@@ -732,7 +759,7 @@
         }
         
         /* ========================================
-           EFRIENDO REDUCED MOTION
+           PREFERENCIA REDUCED MOTION
         ======================================== */
         @media (prefers-reduced-motion: reduce) {
             *,
@@ -747,12 +774,34 @@
                 scroll-behavior: auto;
             }
         }
+        
+        /* Animacoes de notificacao */
+        @keyframes slideIn {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+        @keyframes slideOut {
+            from {
+                transform: translateX(0);
+                opacity: 1;
+            }
+            to {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+        }
     </style>
 </head>
 <body class="font-poppins">
     <!-- ========================================
-         HEADER / NAVEGAÇÃO PRINCIPAL
-         Contém logo, menu de navegação e ações
+         HEADER / NAVEGACAO PRINCIPAL
+         Contem logo, menu de navegacao e acoes
     ======================================== -->
     <header class="header" id="header">
         <div class="max-w-7xl mx-auto flex items-center justify-between">
@@ -773,7 +822,7 @@
                 </span>
             </a>
             
-            <!-- Menu de Navegação Desktop -->
+            <!-- Menu de Navegacao Desktop -->
             <nav class="nav-menu hidden md:flex items-center gap-2" id="navMenu">
                 <a href="#home" class="nav-link">Home</a>
                 <a href="#filmes" class="nav-link">Filmes</a>
@@ -781,20 +830,20 @@
                 <a href="#contato" class="nav-link">Contato</a>
             </nav>
             
-            <!-- Ações do Header -->
+            <!-- Acoes do Header -->
             <div class="flex items-center gap-4">
                 <!-- Toggle de Tema -->
                 <button class="theme-toggle" id="themeToggle" aria-label="Alternar tema">
                 </button>
                 
-                <!-- Botões de Login (visível quando deslogado) -->
+                <!-- Botoes de Login (visivel quando deslogado) -->
                 <div class="auth-buttons flex items-center gap-3">
                     <button onclick="openLoginModal()" class="btn-secondary text-sm py-2 px-4">
                         Entrar
                     </button>
                 </div>
                 
-                <!-- Perfil do Usuário (visível quando logado) -->
+                <!-- Perfil do Usuario (visivel quando logado) -->
                 <div class="user-profile hidden items-center gap-3">
                     <div class="w-10 h-10 rounded-full bg-gradient-to-br from-ldx-600 to-indigo-500 flex items-center justify-center text-white font-semibold">
                         <span id="userInitial">U</span>
@@ -825,10 +874,10 @@
         <div class="hero-gradient"></div>
         <div class="hero-gradient-left"></div>
         
-        <!-- Partículas animadas -->
+        <!-- Particulas animadas -->
         <div class="particles" id="particles"></div>
         
-        <!-- Conteúdo do Hero -->
+        <!-- Conteudo do Hero -->
         <div class="relative z-10 max-w-7xl mx-auto px-4 md:px-8">
             <div class="max-w-2xl reveal" id="heroContent">
                 <span class="inline-block px-3 py-1 bg-ldx-600/20 text-ldx-400 rounded-full text-sm font-medium mb-4">
@@ -854,7 +903,7 @@
                     </span>
                 </div>
                 
-                <!-- Botões de ação -->
+                <!-- Botoes de acao -->
                 <div class="flex flex-wrap gap-4">
                     <button onclick="playFeatured()" class="btn-primary flex items-center gap-2">
                         <span class="flex items-center gap-2">
@@ -876,7 +925,7 @@
     </section>
 
     <!-- ========================================
-         SEÇÃO DE FILMES
+         SECAO DE FILMES
          Carrossel horizontal de filmes
     ======================================== -->
     <section id="filmes" class="section bg-[var(--bg-primary)]">
@@ -886,7 +935,7 @@
             </div>
             
             <div class="carousel-container relative">
-                <!-- Botões de navegação -->
+                <!-- Botoes de navegacao -->
                 <button class="carousel-btn prev" onclick="scrollCarousel('movies-carousel', -1)" aria-label="Anterior">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
@@ -895,10 +944,10 @@
                 
                 <!-- Track do carrossel -->
                 <div class="carousel-track" id="movies-carousel">
-                    <!-- Cards serão inseridos via JavaScript -->
+                    <!-- Cards serao inseridos via JavaScript -->
                 </div>
                 
-                <button class="carousel-btn next" onclick="scrollCarousel('movies-carousel', 1)" aria-label="Próximo">
+                <button class="carousel-btn next" onclick="scrollCarousel('movies-carousel', 1)" aria-label="Proximo">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
                     </svg>
@@ -908,8 +957,8 @@
     </section>
 
     <!-- ========================================
-         SEÇÃO DE SÉRIES
-         Carrossel horizontal de séries
+         SECAO DE SERIES
+         Carrossel horizontal de series
     ======================================== -->
     <section id="series" class="section bg-[var(--bg-secondary)]">
         <div class="max-w-7xl mx-auto">
@@ -925,10 +974,10 @@
                 </button>
                 
                 <div class="carousel-track" id="series-carousel">
-                    <!-- Cards serão inseridos via JavaScript -->
+                    <!-- Cards serao inseridos via JavaScript -->
                 </div>
                 
-                <button class="carousel-btn next" onclick="scrollCarousel('series-carousel', 1)" aria-label="Próximo">
+                <button class="carousel-btn next" onclick="scrollCarousel('series-carousel', 1)" aria-label="Proximo">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
                     </svg>
@@ -938,8 +987,8 @@
     </section>
 
     <!-- ========================================
-         SEÇÃO LANÇAMENTOS
-         Carrossel de lançamentos recentes
+         SECAO LANCAMENTOS
+         Carrossel de lancamentos recentes
     ======================================== -->
     <section class="section bg-[var(--bg-primary)]">
         <div class="max-w-7xl mx-auto">
@@ -955,10 +1004,10 @@
                 </button>
                 
                 <div class="carousel-track" id="releases-carousel">
-                    <!-- Cards serão inseridos via JavaScript -->
+                    <!-- Cards serao inseridos via JavaScript -->
                 </div>
                 
-                <button class="carousel-btn next" onclick="scrollCarousel('releases-carousel', 1)" aria-label="Próximo">
+                <button class="carousel-btn next" onclick="scrollCarousel('releases-carousel', 1)" aria-label="Proximo">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
                     </svg>
@@ -968,15 +1017,15 @@
     </section>
 
     <!-- ========================================
-         SEÇÃO DE CONTATO
-         Formulário de contato
+         SECAO DE CONTATO
+         Formulario de contato
     ======================================== -->
     <section id="contato" class="section bg-[var(--bg-secondary)]">
         <div class="max-w-7xl mx-auto px-4 md:px-8">
             <h2 class="section-title reveal">Entre em Contato</h2>
             
             <div class="grid md:grid-cols-2 gap-12 mt-12">
-                <!-- Informações de Contato -->
+                <!-- Informacoes de Contato -->
                 <div class="reveal">
                     <h3 class="text-2xl font-bold mb-4">Fale Conosco</h3>
                     <p class="text-[var(--text-secondary)] mb-8">
@@ -1012,7 +1061,7 @@
                     </div>
                 </div>
                 
-                <!-- Formulário -->
+                <!-- Formulario -->
                 <form class="reveal space-y-4" onsubmit="handleContact(event)">
                     <div>
                         <label class="block text-sm font-medium mb-2">Nome</label>
@@ -1036,7 +1085,7 @@
 
     <!-- ========================================
          FOOTER
-         Rodapé com informações e links
+         Rodape com informacoes e links
     ======================================== -->
     <footer class="footer">
         <div class="max-w-7xl mx-auto px-4 md:px-8">
@@ -1049,7 +1098,7 @@
                     </p>
                 </div>
                 
-                <!-- Coluna 2 - Navegação -->
+                <!-- Coluna 2 - Navegacao -->
                 <div>
                     <h4 class="font-bold mb-4">Navegacao</h4>
                     <ul class="space-y-2 text-sm text-[var(--text-secondary)]">
@@ -1105,7 +1154,7 @@
 
     <!-- ========================================
          MODAL DE LOGIN
-         Formulário de autenticação
+         Formulario de autenticacao
     ======================================== -->
     <div class="modal-overlay" id="loginModal">
         <div class="modal-content">
@@ -1119,7 +1168,7 @@
                 </button>
             </div>
             
-            <!-- Formulário de Login -->
+            <!-- Formulario de Login -->
             <form id="loginForm" class="space-y-4" onsubmit="handleLogin(event)">
                 <div>
                     <label class="block text-sm font-medium mb-2">Email</label>
@@ -1134,7 +1183,7 @@
                 </button>
             </form>
             
-            <!-- Formulário de Cadastro (oculto por padrão) -->
+            <!-- Formulario de Cadastro (oculto por padrao) -->
             <form id="registerForm" class="space-y-4 hidden" onsubmit="handleRegister(event)">
                 <div>
                     <label class="block text-sm font-medium mb-2">Nome</label>
@@ -1160,7 +1209,7 @@
                 <div class="flex-1 h-px bg-[var(--border)]"></div>
             </div>
             
-            <!-- Botão de Convidado -->
+            <!-- Botao de Convidado -->
             <button onclick="loginAsGuest()" class="btn-secondary w-full flex items-center justify-center gap-2">
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
@@ -1179,7 +1228,7 @@
     </div>
 
     <!-- ========================================
-         MODAL DO PLAYER DE VÍDEO
+         MODAL DO PLAYER DE VIDEO
          Player sobreposto para assistir
     ======================================== -->
     <div class="player-overlay" id="playerOverlay">
@@ -1197,31 +1246,38 @@
                 </div>
             </div>
             
-            <!-- Seletor de Temporada/Episódio (visível para séries) -->
-            <div class="hidden md:flex items-center gap-4" id="seriesControls">
+            <!-- Seletor de Temporada/Episodio (visivel para series) -->
+            <div class="series-controls hidden md:flex items-center gap-4" id="seriesControls">
                 <select id="seasonSelect" class="input-field py-2 px-3 w-auto" onchange="changeSeason()">
-                    <!-- Opções serão inseridas via JS -->
+                    <!-- Opcoes serao inseridas via JS -->
                 </select>
                 <select id="episodeSelect" class="input-field py-2 px-3 w-auto" onchange="changeEpisode()">
-                    <!-- Opções serão inseridas via JS -->
+                    <!-- Opcoes serao inseridas via JS -->
                 </select>
             </div>
         </div>
         
         <!-- Container do Player -->
-        <div class="player-container">
-            <iframe id="videoFrame" class="player-frame" allowfullscreen></iframe>
+        <div class="player-container" style="position: relative;">
+            <!-- Loading -->
+            <div class="player-loading" id="playerLoading">
+                <div class="spinner"></div>
+                <p class="text-[var(--text-secondary)]">Carregando player...</p>
+            </div>
+            
+            <iframe id="videoFrame" class="player-frame" allowfullscreen style="position: relative; z-index: 1;"></iframe>
         </div>
     </div>
 
     <!-- ========================================
          JAVASCRIPT
-         Toda a lógica do site
+         Toda a logica do site
     ======================================== -->
     <script>
         /* ========================================
-           DADOS DE FILMES E SÉRIES
-           Array com informações mockadas
+           DADOS DE FILMES E SERIES
+           Array com informacoes mockadas
+           Os IDs sao do TMDB (The Movie Database)
         ======================================== */
         
         // Filmes populares com IDs do TMDB
@@ -1248,7 +1304,7 @@
             },
             {
                 id: 569094,
-                title: "Spider-Man: Através do Aranhaverso",
+                title: "Spider-Man: Atraves do Aranhaverso",
                 year: 2023,
                 rating: 8.7,
                 poster: "https://image.tmdb.org/t/p/w500/qNBAXBIQlnOThrVvA6mA2B5ber.jpg",
@@ -1308,7 +1364,7 @@
             }
         ];
         
-        // Séries populares
+        // Series populares
         const series = [
             {
                 id: 84958,
@@ -1364,13 +1420,13 @@
             },
             {
                 id: 92830,
-                title: "Oppenheimer",
-                year: 2023,
+                title: "The Witcher",
+                year: 2019,
                 rating: 8.1,
-                poster: "https://image.tmdb.org/t/p/w500/8Gxv8gSFCU0XGDykEGv7zR1n2ua.jpg",
-                backdrop: "https://image.tmdb.org/t/p/original/fm6KqXpk3M2HVveHwCrBSSBaO0V.jpg",
+                poster: "https://image.tmdb.org/t/p/w500/7vjaCdMw15FEbXyLQTVa04URsPm.jpg",
+                backdrop: "https://image.tmdb.org/t/p/original/jBJWaqoSCiARWtfV0GlqHrcdidd.jpg",
                 type: "tv",
-                seasons: 1,
+                seasons: 3,
                 currentSeason: 1,
                 currentEpisode: 1,
                 quality: "HD"
@@ -1416,7 +1472,7 @@
             }
         ];
         
-        // Lançamentos recentes
+        // Lancamentos recentes
         const releases = [
             {
                 id: 550,
@@ -1469,16 +1525,6 @@
                 quality: "HD"
             },
             {
-                id: 424,
-                title: "Cidadado Kane",
-                year: 1941,
-                rating: 8.1,
-                poster: "https://image.tmdb.org/t/p/w500/psj3NRH4FY7DbwvYwHi5LFHQ7jG.jpg",
-                backdrop: "https://image.tmdb.org/t/p/original/rXu4f2veMcclYaBVAYHwpNSYpRc.jpg",
-                type: "movie",
-                quality: "HD"
-            },
-            {
                 id: 278,
                 title: "Um Sonho de Liberdade",
                 year: 1994,
@@ -1497,28 +1543,65 @@
                 backdrop: "https://image.tmdb.org/t/p/original/3h1JZGDhZ8nzxdgvkxha0qBqi05.jpg",
                 type: "movie",
                 quality: "HD"
+            },
+            {
+                id: 424,
+                title: "Cidadao Kane",
+                year: 1941,
+                rating: 8.1,
+                poster: "https://image.tmdb.org/t/p/w500/psj3NRH4FY7DbwvYwHi5LFHQ7jG.jpg",
+                backdrop: "https://image.tmdb.org/t/p/original/rXu4f2veMcclYaBVAYHwpNSYpRc.jpg",
+                type: "movie",
+                quality: "HD"
             }
         ];
         
         /* ========================================
-           VARIÁVEIS GLOBAIS
+           VARIAVEIS GLOBAIS
         ======================================== */
-        let currentUser = null; // Usuário atual logado
+        let currentUser = null; // Usuario atual logado
         let featuredItem = null; // Item em destaque no hero
         let currentPlayingItem = null; // Item sendo reproduzido
         
         /* ========================================
-           INICIALIZAÇÃO DO SITE
-           Configurações iniciais ao carregar
+           CONFIGURACAO DA API DE EMBED
+           Usando VidSrc como provedor de video
+        ======================================== */
+        const EMBED_CONFIG = {
+            // VidSrc - Funciona bem com TMDB IDs
+            baseUrl: 'https://vidsrc.xyz/embed',
+            // Alternativas (caso precise):
+            // baseUrl: 'https://2embed.org/embed',
+            // baseUrl: 'https://embedsu.com/embed',
+        };
+        
+        /**
+         * Gera a URL do player baseado no tipo de conteudo
+         * @param {Object} item - Item a ser reproduzido
+         * @returns {string} - URL do player
+         */
+        function getPlayerUrl(item) {
+            if (item.type === 'movie') {
+                // URL para filmes: /embed/movie/{tmdbId}
+                return `${EMBED_CONFIG.baseUrl}/movie/${item.id}`;
+            } else {
+                // URL para series: /embed/tv/{tmdbId}/{season}/{episode}
+                return `${EMBED_CONFIG.baseUrl}/tv/${item.id}/${item.currentSeason}/${item.currentEpisode}`;
+            }
+        }
+        
+        /* ========================================
+           INICIALIZACAO DO SITE
+           Configuracoes iniciais ao carregar
         ======================================== */
         document.addEventListener('DOMContentLoaded', function() {
-            // Verifica se há usuário salvo no localStorage
+            // Verifica se ha usuario salvo no localStorage
             checkSavedUser();
             
             // Configura o tema salvo
             checkSavedTheme();
             
-            // Renderiza os carrosséis
+            // Renderiza os carrosseis
             renderCarousel('movies-carousel', movies);
             renderCarousel('series-carousel', series);
             renderCarousel('releases-carousel', releases);
@@ -1526,26 +1609,29 @@
             // Configura o hero com item em destaque
             setupHero();
             
-            // Cria partículas animadas
+            // Cria particulas animadas
             createParticles();
             
             // Configura scroll listener para header
             setupScrollListener();
             
-            // Configura animações de reveal
+            // Configura animacoes de reveal
             setupRevealAnimations();
             
-            // Configura navegação suave
+            // Configura navegacao suave
             setupSmoothNavigation();
+            
+            // Configura toggle de tema
+            document.getElementById('themeToggle').addEventListener('click', toggleTheme);
         });
         
         /* ========================================
-           SISTEMA DE AUTENTICAÇÃO
+           SISTEMA DE AUTENTICACAO
            Login, cadastro e modo convidado
         ======================================== */
         
         /**
-         * Verifica se existe usuário salvo no localStorage
+         * Verifica se existe usuario salvo no localStorage
          */
         function checkSavedUser() {
             const savedUser = localStorage.getItem('ldxflix_user');
@@ -1556,7 +1642,7 @@
         }
         
         /**
-         * Atualiza a interface para mostrar o usuário logado
+         * Atualiza a interface para mostrar o usuario logado
          */
         function updateUserInterface() {
             const authButtons = document.querySelector('.auth-buttons');
@@ -1592,7 +1678,7 @@
             document.getElementById('loginModal').classList.remove('active');
             document.body.style.overflow = '';
             
-            // Reseta para o formulário de login
+            // Reseta para o formulario de login
             document.getElementById('loginForm').classList.remove('hidden');
             document.getElementById('registerForm').classList.add('hidden');
             document.getElementById('modalTitle').textContent = 'Entrar';
@@ -1601,7 +1687,7 @@
         }
         
         /**
-         * Alterna entre formulário de login e cadastro
+         * Alterna entre formulario de login e cadastro
          */
         function toggleAuthForm() {
             const loginForm = document.getElementById('loginForm');
@@ -1628,16 +1714,15 @@
         }
         
         /**
-         * Processa o login do usuário
-         * @param {Event} event - Evento do formulário
+         * Processa o login do usuario
+         * @param {Event} event - Evento do formulario
          */
         function handleLogin(event) {
             event.preventDefault();
             
             const email = document.getElementById('loginEmail').value;
-            const password = document.getElementById('loginPassword').value;
             
-            // Simula validação (em produção, usar API real)
+            // Simula validacao
             currentUser = {
                 name: email.split('@')[0],
                 email: email,
@@ -1651,22 +1736,21 @@
             updateUserInterface();
             closeLoginModal();
             
-            // Mostra notificação
+            // Mostra notificacao
             showNotification('Bem-vindo de volta, ' + currentUser.name + '!', 'success');
         }
         
         /**
-         * Processa o cadastro do usuário
-         * @param {Event} event - Evento do formulário
+         * Processa o cadastro do usuario
+         * @param {Event} event - Evento do formulario
          */
         function handleRegister(event) {
             event.preventDefault();
             
             const name = document.getElementById('registerName').value;
             const email = document.getElementById('registerEmail').value;
-            const password = document.getElementById('registerPassword').value;
             
-            // Simula criação de conta
+            // Simula criacao de conta
             currentUser = {
                 name: name,
                 email: email,
@@ -1702,7 +1786,7 @@
         }
         
         /**
-         * Realiza logout do usuário
+         * Realiza logout do usuario
          */
         function logout() {
             currentUser = null;
@@ -1714,7 +1798,7 @@
         
         /* ========================================
            SISTEMA DE TEMA
-           Alternância entre Dark e Light
+           Alternancia entre Dark e Light
         ======================================== */
         
         /**
@@ -1730,17 +1814,17 @@
         /**
          * Alterna entre tema dark e light
          */
-        document.getElementById('themeToggle').addEventListener('click', function() {
+        function toggleTheme() {
             document.body.classList.toggle('light-theme');
             
-            // Salva preferência
+            // Salva preferencia
             const isLight = document.body.classList.contains('light-theme');
             localStorage.setItem('ldxflix_theme', isLight ? 'light' : 'dark');
-        });
+        }
         
         /* ========================================
-           RENDERIZAÇÃO DE CARROSSEL
-           Gera cards de filmes/séries
+           RENDERIZACAO DE CARROSSEL
+           Gera cards de filmes/series
         ======================================== */
         
         /**
@@ -1764,8 +1848,8 @@
                         <img src="${item.poster}" alt="${item.title}" loading="lazy" 
                              onerror="this.src='https://via.placeholder.com/300x450?text=Sem+Imagem'">
                         <div class="card-movie-overlay">
-                            <button onclick="playItem(${JSON.stringify(item).replace(/"/g, '&quot;')})" 
-                                    class="btn-primary py-2 px-4 text-sm flex items-center justify-center gap-2">
+                            <button class="btn-primary py-2 px-4 text-sm flex items-center justify-center gap-2"
+                                    onclick="event.stopPropagation(); playItem(${item.id})">
                                 <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
                                     <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd"/>
                                 </svg>
@@ -1780,11 +1864,8 @@
                 `;
                 
                 // Adiciona evento de clique no card
-                card.addEventListener('click', function(e) {
-                    // Evita abrir player se clicou no botão
-                    if (!e.target.closest('button')) {
-                        playItem(item);
-                    }
+                card.addEventListener('click', function() {
+                    playItem(item.id);
                 });
                 
                 container.appendChild(card);
@@ -1794,7 +1875,7 @@
         /**
          * Navega o carrossel
          * @param {string} containerId - ID do container
-         * @param {number} direction - Direção (-1 ou 1)
+         * @param {number} direction - Direcao (-1 ou 1)
          */
         function scrollCarousel(containerId, direction) {
             const container = document.getElementById(containerId);
@@ -1807,14 +1888,14 @@
         
         /* ========================================
            HERO SECTION
-           Configuração do banner principal
+           Configuracao do banner principal
         ======================================== */
         
         /**
-         * Configura o hero com filme/série em destaque
+         * Configura o hero com filme/serie em destaque
          */
         function setupHero() {
-            // Seleciona um item aleatório como destaque
+            // Seleciona um item aleatorio como destaque
             const allItems = [...movies, ...series];
             featuredItem = allItems[Math.floor(Math.random() * allItems.length)];
             
@@ -1826,7 +1907,7 @@
             document.getElementById('heroYear').textContent = featuredItem.year;
             document.getElementById('heroQuality').textContent = featuredItem.quality;
             
-            // Anima entrada do conteúdo
+            // Anima entrada do conteudo
             setTimeout(() => {
                 document.getElementById('heroContent').classList.add('active');
             }, 300);
@@ -1837,12 +1918,12 @@
          */
         function playFeatured() {
             if (featuredItem) {
-                playItem(featuredItem);
+                playItem(featuredItem.id);
             }
         }
         
         /**
-         * Adiciona item à lista do usuário
+         * Adiciona item a lista do usuario
          */
         function addToList() {
             if (!currentUser) {
@@ -1853,52 +1934,79 @@
         }
         
         /* ========================================
-           PLAYER DE VÍDEO
-           Sistema de reprodução
+           PLAYER DE VIDEO
+           Sistema de reproducao
         ======================================== */
         
         /**
-         * Abre o player para reproduzir item
-         * @param {Object} item - Item a ser reproduzido
+         * Encontra um item pelo ID
+         * @param {number} id - ID do item
+         * @returns {Object|null} - Item encontrado ou null
          */
-        function playItem(item) {
-            // Verifica se usuário está logado
+        function findItemById(id) {
+            const allItems = [...movies, ...series, ...releases];
+            return allItems.find(item => item.id === id) || null;
+        }
+        
+        /**
+         * Abre o player para reproduzir item
+         * @param {number} itemId - ID do item a ser reproduzido
+         */
+        function playItem(itemId) {
+            // Verifica se usuario esta logado
             if (!currentUser) {
                 openLoginModal();
-                showNotification('Faça login para assistir', 'info');
+                showNotification('Faca login para assistir', 'info');
                 return;
             }
             
-            currentPlayingItem = item;
+            // Encontra o item
+            let item = findItemById(itemId);
+            if (!item) {
+                showNotification('Item nao encontrado', 'error');
+                return;
+            }
+            
+            currentPlayingItem = { ...item };
             
             const playerOverlay = document.getElementById('playerOverlay');
             const videoFrame = document.getElementById('videoFrame');
             const playerTitle = document.getElementById('playerTitle');
             const playerSubtitle = document.getElementById('playerSubtitle');
             const seriesControls = document.getElementById('seriesControls');
+            const playerLoading = document.getElementById('playerLoading');
             
-            // Atualiza título
+            // Atualiza titulo
             playerTitle.textContent = item.title;
             
+            // Mostra loading
+            playerLoading.classList.remove('hidden');
+            
             // Monta URL do player
-            let playerUrl = '';
-            if (item.type === 'movie') {
-                // URL para filmes
-                playerUrl = `/embed/movie/${item.id}`;
-                playerSubtitle.textContent = `${item.year} | ${item.quality}`;
-                seriesControls.classList.add('hidden');
-            } else {
-                // URL para séries
-                playerUrl = `/embed/tv/${item.id}/${item.currentSeason}/${item.currentEpisode}`;
+            const playerUrl = getPlayerUrl(currentPlayingItem);
+            
+            if (item.type === 'tv') {
                 playerSubtitle.textContent = `Temporada ${item.currentSeason} | Episodio ${item.currentEpisode}`;
                 
-                // Mostra controles de temporada/episódio
+                // Mostra controles de temporada/episodio
                 seriesControls.classList.remove('hidden');
+                seriesControls.classList.add('flex');
                 setupSeriesControls(item);
+            } else {
+                playerSubtitle.textContent = `${item.year} | ${item.quality}`;
+                seriesControls.classList.add('hidden');
+                seriesControls.classList.remove('flex');
             }
             
             // Carrega o iframe
             videoFrame.src = playerUrl;
+            
+            // Remove loading quando o iframe carregar
+            videoFrame.onload = function() {
+                setTimeout(() => {
+                    playerLoading.classList.add('hidden');
+                }, 1000);
+            };
             
             // Mostra o player
             playerOverlay.classList.add('active');
@@ -1906,14 +2014,14 @@
         }
         
         /**
-         * Configura controles de temporada e episódio
-         * @param {Object} item - Série sendo reproduzida
+         * Configura controles de temporada e episodio
+         * @param {Object} item - Serie sendo reproduzida
          */
         function setupSeriesControls(item) {
             const seasonSelect = document.getElementById('seasonSelect');
             const episodeSelect = document.getElementById('episodeSelect');
             
-            // Limpa opções existentes
+            // Limpa opcoes existentes
             seasonSelect.innerHTML = '';
             episodeSelect.innerHTML = '';
             
@@ -1926,8 +2034,9 @@
                 seasonSelect.appendChild(option);
             }
             
-            // Adiciona episódios (assumindo 10 por temporada)
-            for (let i = 1; i <= 10; i++) {
+            // Adiciona episodios (assumindo 10 por temporada como padrao)
+            const episodeCount = item.episodeCount || 10;
+            for (let i = 1; i <= episodeCount; i++) {
                 const option = document.createElement('option');
                 option.value = i;
                 option.textContent = `Episodio ${i}`;
@@ -1937,14 +2046,14 @@
         }
         
         /**
-         * Muda a temporada da série
+         * Muda a temporada da serie
          */
         function changeSeason() {
             const season = document.getElementById('seasonSelect').value;
             currentPlayingItem.currentSeason = parseInt(season);
             currentPlayingItem.currentEpisode = 1;
             
-            // Atualiza episódios
+            // Atualiza episodios
             setupSeriesControls(currentPlayingItem);
             
             // Recarrega player
@@ -1952,7 +2061,7 @@
         }
         
         /**
-         * Muda o episódio da série
+         * Muda o episodio da serie
          */
         function changeEpisode() {
             const episode = document.getElementById('episodeSelect').value;
@@ -1968,10 +2077,21 @@
         function updatePlayerUrl() {
             const videoFrame = document.getElementById('videoFrame');
             const playerSubtitle = document.getElementById('playerSubtitle');
+            const playerLoading = document.getElementById('playerLoading');
             
-            const playerUrl = `/embed/tv/${currentPlayingItem.id}/${currentPlayingItem.currentSeason}/${currentPlayingItem.currentEpisode}`;
+            // Mostra loading
+            playerLoading.classList.remove('hidden');
+            
+            const playerUrl = getPlayerUrl(currentPlayingItem);
             videoFrame.src = playerUrl;
             playerSubtitle.textContent = `Temporada ${currentPlayingItem.currentSeason} | Episodio ${currentPlayingItem.currentEpisode}`;
+            
+            // Esconde loading apos carregar
+            videoFrame.onload = function() {
+                setTimeout(() => {
+                    playerLoading.classList.add('hidden');
+                }, 1000);
+            };
         }
         
         /**
@@ -1981,7 +2101,7 @@
             const playerOverlay = document.getElementById('playerOverlay');
             const videoFrame = document.getElementById('videoFrame');
             
-            // Para o vídeo
+            // Para o video
             videoFrame.src = '';
             
             // Esconde o player
@@ -1991,12 +2111,12 @@
         }
         
         /* ========================================
-           PARTÍCULAS ANIMADAS
+           PARTICULAS ANIMADAS
            Efeito visual no hero
         ======================================== */
         
         /**
-         * Cria partículas flutuantes no hero
+         * Cria particulas flutuantes no hero
          */
         function createParticles() {
             const container = document.getElementById('particles');
@@ -2006,16 +2126,16 @@
                 const particle = document.createElement('div');
                 particle.className = 'particle';
                 
-                // Posição aleatória
+                // Posicao aleatoria
                 particle.style.left = Math.random() * 100 + '%';
                 particle.style.top = Math.random() * 100 + '%';
                 
-                // Tamanho aleatório
+                // Tamanho aleatorio
                 const size = Math.random() * 4 + 2;
                 particle.style.width = size + 'px';
                 particle.style.height = size + 'px';
                 
-                // Atraso aleatório na animação
+                // Atraso aleatorio na animacao
                 particle.style.animationDelay = Math.random() * 15 + 's';
                 particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
                 
@@ -2044,12 +2164,12 @@
         }
         
         /* ========================================
-           ANIMAÇÕES DE REVEAL
+           ANIMACOES DE REVEAL
            Entrada de elementos ao scroll
         ======================================== */
         
         /**
-         * Configura animações de reveal com IntersectionObserver
+         * Configura animacoes de reveal com IntersectionObserver
          */
         function setupRevealAnimations() {
             const observerOptions = {
@@ -2079,19 +2199,19 @@
                 observer.observe(el);
             });
             
-            // Observa carrosséis
+            // Observa carrosseis
             document.querySelectorAll('.carousel-container').forEach(el => {
                 observer.observe(el);
             });
         }
         
         /* ========================================
-           NAVEGAÇÃO SUAVE
-           Scroll animado para seções
+           NAVEGACAO SUAVE
+           Scroll animado para secoes
         ======================================== */
         
         /**
-         * Configura navegação suave entre seções
+         * Configura navegacao suave entre secoes
          */
         function setupSmoothNavigation() {
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -2133,12 +2253,12 @@
         }
         
         /* ========================================
-           FORMULÁRIO DE CONTATO
+           FORMULARIO DE CONTATO
         ======================================== */
         
         /**
-         * Processa envio do formulário de contato
-         * @param {Event} event - Evento do formulário
+         * Processa envio do formulario de contato
+         * @param {Event} event - Evento do formulario
          */
         function handleContact(event) {
             event.preventDefault();
@@ -2147,16 +2267,16 @@
         }
         
         /* ========================================
-           SISTEMA DE NOTIFICAÇÕES
+           SISTEMA DE NOTIFICACOES
         ======================================== */
         
         /**
-         * Mostra uma notificação toast
+         * Mostra uma notificacao toast
          * @param {string} message - Mensagem a exibir
          * @param {string} type - Tipo (success, error, info)
          */
         function showNotification(message, type = 'info') {
-            // Remove notificação existente
+            // Remove notificacao existente
             const existing = document.querySelector('.notification');
             if (existing) existing.remove();
             
@@ -2180,7 +2300,7 @@
                 max-width: 400px;
             `;
             
-            // Ícone baseado no tipo
+            // Icone baseado no tipo
             let iconColor = '#9333ea';
             let iconPath = '';
             
@@ -2204,38 +2324,12 @@
             
             document.body.appendChild(notification);
             
-            // Remove após 3 segundos
+            // Remove apos 3 segundos
             setTimeout(() => {
                 notification.style.animation = 'slideOut 0.3s ease forwards';
                 setTimeout(() => notification.remove(), 300);
             }, 3000);
         }
-        
-        // Adiciona estilos de animação para notificações
-        const notificationStyles = document.createElement('style');
-        notificationStyles.textContent = `
-            @keyframes slideIn {
-                from {
-                    transform: translateX(100%);
-                    opacity: 0;
-                }
-                to {
-                    transform: translateX(0);
-                    opacity: 1;
-                }
-            }
-            @keyframes slideOut {
-                from {
-                    transform: translateX(0);
-                    opacity: 1;
-                }
-                to {
-                    transform: translateX(100%);
-                    opacity: 0;
-                }
-            }
-        `;
-        document.head.appendChild(notificationStyles);
         
         /* ========================================
            TECLADO - ACESSIBILIDADE
