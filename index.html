@@ -652,6 +652,19 @@
         .logo-img:hover {
             transform: scale(1.05);
         }
+
+        .input-field {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            color: var(--text-primary);
+            padding: 0.5rem 1rem;
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+        .input-field:focus {
+            border-color: var(--accent);
+        }
     </style>
 </head>
 <body class="font-poppins">
@@ -898,46 +911,39 @@
         const allItems = [...movies, ...series, ...releases];
 
         /* ========================================
-           CONFIGURACAO DO PLAYER
+           CONFIGURACAO DO PLAYER VIDKING
+           Documentacao: https://www.vidking.net
         ======================================== */
         
-        const PROVIDERS = [
-            {
-                name: 'VidSrc Pro',
-                getUrl: (item) => item.type === 'movie' 
-                    ? `https://vidsrc.pro/embed/movie/${item.id}`
-                    : `https://vidsrc.pro/embed/tv/${item.id}/${item.currentSeason}/${item.currentEpisode}`
-            },
-            {
-                name: 'VidSrc ICU',
-                getUrl: (item) => item.type === 'movie' 
-                    ? `https://vidsrc.icu/embed/movie/${item.id}`
-                    : `https://vidsrc.icu/embed/tv/${item.id}/${item.currentSeason}/${item.currentEpisode}`
-            },
-            {
-                name: '2Embed',
-                getUrl: (item) => item.type === 'movie' 
-                    ? `https://www.2embed.cc/embed/${item.id}`
-                    : `https://www.2embed.cc/embedtv/${item.id}&s=${item.currentSeason}&e=${item.currentEpisode}`
-            },
-            {
-                name: 'Embedsu',
-                getUrl: (item) => item.type === 'movie' 
-                    ? `https://embedsu.com/embed/movie/${item.id}`
-                    : `https://embedsu.com/embed/tv/${item.id}/${item.currentSeason}/${item.currentEpisode}`
-            },
-            {
-                name: 'VidSrc XYZ',
-                getUrl: (item) => item.type === 'movie' 
-                    ? `https://vidsrc.xyz/embed/movie/${item.id}`
-                    : `https://vidsrc.xyz/embed/tv/${item.id}/${item.currentSeason}/${item.currentEpisode}`
-            }
-        ];
-        
-        let currentProviderIndex = 0;
-        
+        const VIDKING_BASE_URL = 'https://www.vidking.net';
+        // Cor tema do site (Roxo LDX) sem o #
+        const THEME_COLOR = '9333ea'; 
+
         function getPlayerUrl(item) {
-            return PROVIDERS[currentProviderIndex].getUrl(item);
+            // Parametros padrao para todos os tipos
+            // color: Cor do player para combinar com o tema
+            // autoPlay: Iniciar automaticamente
+            const params = new URLSearchParams({
+                color: THEME_COLOR,
+                autoPlay: 'true'
+            });
+
+            let url = '';
+
+            if (item.type === 'movie') {
+                // API Route para Filmes: /embed/movie/{tmdbId}
+                url = `${VIDKING_BASE_URL}/embed/movie/${item.id}`;
+            } else {
+                // API Route para Series: /embed/tv/{tmdbId}/{season}/{episode}
+                url = `${VIDKING_BASE_URL}/embed/tv/${item.id}/${item.currentSeason}/${item.currentEpisode}`;
+                
+                // Features exclusivas para Series
+                params.append('nextEpisode', 'true'); // Botao de proximo episodio
+                params.append('episodeSelector', 'true'); // Menu de selecao de episodios
+            }
+
+            // Retorna URL completa com parametros
+            return `${url}?${params.toString()}`;
         }
 
         let featuredItem = null;
@@ -1032,7 +1038,6 @@
             if (!item) { showNotification('Item nao encontrado', 'error'); return; }
             
             currentPlayingItem = { ...item };
-            currentProviderIndex = 0;
             
             const playerOverlay = document.getElementById('playerOverlay');
             const videoFrame = document.getElementById('videoFrame');
