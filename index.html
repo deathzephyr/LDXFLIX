@@ -56,20 +56,6 @@
             --gradient-end: #6366f1;
         }
         
-        .light-theme {
-            --bg-primary: #fafafa;
-            --bg-secondary: #f4f4f5;
-            --bg-card: #ffffff;
-            --bg-hover: #f1f5f9;
-            --text-primary: #18181b;
-            --text-secondary: #52525b;
-            --text-muted: #a1a1aa;
-            --accent: #7c3aed;
-            --accent-hover: #9333ea;
-            --accent-glow: rgba(124, 58, 237, 0.3);
-            --border: #e4e4e7;
-        }
-        
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; }
         
@@ -495,31 +481,6 @@
         
         @keyframes spin { to { transform: rotate(360deg); } }
         
-        .theme-toggle {
-            width: 56px;
-            height: 28px;
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 14px;
-            cursor: pointer;
-            position: relative;
-            transition: all 0.3s ease;
-        }
-        
-        .theme-toggle::after {
-            content: '';
-            position: absolute;
-            top: 3px;
-            left: 3px;
-            width: 20px;
-            height: 20px;
-            background: var(--accent);
-            border-radius: 50%;
-            transition: all 0.3s ease;
-        }
-        
-        .light-theme .theme-toggle::after { left: 31px; }
-        
         .search-btn {
             width: 44px;
             height: 44px;
@@ -688,8 +649,6 @@
                     </svg>
                 </button>
                 
-                <button class="theme-toggle" id="themeToggle" aria-label="Alternar tema"></button>
-                
                 <div class="hamburger md:hidden" id="hamburger" onclick="toggleMobileMenu()">
                     <span></span>
                     <span></span>
@@ -719,7 +678,7 @@
                         </svg>
                         <span id="heroRating">0</span>
                     </span>
-                    <span class="text-[var(--text-muted)]" id="heroYear">2024</span>
+                    <span class="text-[var(--text-muted)]" id="heroYear">2026</span>
                     <span class="px-2 py-0.5 border border-[var(--border)] rounded text-xs" id="heroQuality">HD</span>
                 </div>
                 
@@ -824,7 +783,7 @@
                 </div>
             </div>
             <div class="pt-8 border-t border-[var(--border)] text-center text-sm text-[var(--text-muted)]">
-                <p>2024 LDXFLIX. Todos os direitos reservados.</p>
+                <p>2026 LDXFLIX. Todos os direitos reservados.</p>
             </div>
         </div>
     </footer>
@@ -912,17 +871,12 @@
 
         /* ========================================
            CONFIGURACAO DO PLAYER VIDKING
-           Documentacao: https://www.vidking.net
         ======================================== */
         
         const VIDKING_BASE_URL = 'https://www.vidking.net';
-        // Cor tema do site (Roxo LDX) sem o #
         const THEME_COLOR = '9333ea'; 
 
         function getPlayerUrl(item) {
-            // Parametros padrao para todos os tipos
-            // color: Cor do player para combinar com o tema
-            // autoPlay: Iniciar automaticamente
             const params = new URLSearchParams({
                 color: THEME_COLOR,
                 autoPlay: 'true'
@@ -931,18 +885,13 @@
             let url = '';
 
             if (item.type === 'movie') {
-                // API Route para Filmes: /embed/movie/{tmdbId}
                 url = `${VIDKING_BASE_URL}/embed/movie/${item.id}`;
             } else {
-                // API Route para Series: /embed/tv/{tmdbId}/{season}/{episode}
                 url = `${VIDKING_BASE_URL}/embed/tv/${item.id}/${item.currentSeason}/${item.currentEpisode}`;
-                
-                // Features exclusivas para Series
-                params.append('nextEpisode', 'true'); // Botao de proximo episodio
-                params.append('episodeSelector', 'true'); // Menu de selecao de episodios
+                params.append('nextEpisode', 'true');
+                params.append('episodeSelector', 'true');
             }
 
-            // Retorna URL completa com parametros
             return `${url}?${params.toString()}`;
         }
 
@@ -950,7 +899,6 @@
         let currentPlayingItem = null;
         
         document.addEventListener('DOMContentLoaded', function() {
-            checkSavedTheme();
             renderCarousel('movies-carousel', movies);
             renderCarousel('series-carousel', series);
             renderCarousel('releases-carousel', releases);
@@ -960,18 +908,7 @@
             setupRevealAnimations();
             setupSmoothNavigation();
             setupSearch();
-            document.getElementById('themeToggle').addEventListener('click', toggleTheme);
         });
-        
-        function checkSavedTheme() {
-            const savedTheme = localStorage.getItem('ldxflix_theme');
-            if (savedTheme === 'light') document.body.classList.add('light-theme');
-        }
-        
-        function toggleTheme() {
-            document.body.classList.toggle('light-theme');
-            localStorage.setItem('ldxflix_theme', document.body.classList.contains('light-theme') ? 'light' : 'dark');
-        }
         
         function renderCarousel(containerId, items) {
             const container = document.getElementById(containerId);
@@ -1287,14 +1224,12 @@
                 closeSearch(); 
             }
             
-            // Ctrl+K or / to open search
             if ((e.ctrlKey && e.key === 'k') || (e.key === '/' && !['INPUT', 'TEXTAREA'].includes(document.activeElement.tagName))) {
                 e.preventDefault();
                 openSearch();
             }
         });
         
-        // Close search when clicking outside
         document.getElementById('searchOverlay').addEventListener('click', function(e) {
             if (e.target === this) {
                 closeSearch();
